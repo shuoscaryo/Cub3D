@@ -1,7 +1,8 @@
 NAME := cub3D
 
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -I . -L minilibx
+CFLAGS := #-Wall -Wextra -Werror
+MINILIBX_FLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 RM := rm -f
 
 SRC_DIR := src
@@ -11,7 +12,7 @@ OBJ_DIR := obj
 LIBFT_DIR := libft
 LIBFT_NAME := libft.a
 
-LIB := lmlx_Linux\
+LIB := mlx_Linux\
 	Xext\
 	X11
 
@@ -27,7 +28,7 @@ INCLUDE_PATH := -I$(INCLUDE_DIR) -I$(LIBFT_DIR)/include
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT_DIR)/$(LIBFT_NAME)
-	$(CC) $(CFLAGS)  $(INCLUDE_PATH) $(OBJ) $(LIBFT_DIR)/$(LIBFT_NAME) $(LIB_FLAG) -o $@
+	$(CC) $(CFLAGS)  $(INCLUDE_PATH) $(OBJ) $(LIBFT_DIR)/$(LIBFT_NAME) $(MINILIBX_FLAGS) $(LIB_FLAG) -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_FOLDER)

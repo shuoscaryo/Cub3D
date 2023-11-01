@@ -2,7 +2,8 @@ NAME := cub3D
 
 CC := gcc
 CFLAGS := #-Wall -Wextra -Werror
-MINILIBX_FLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+#MINILIBX_FLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+MINILIBX_FLAGS = -Lmlx_linux -lmlx -Imlx_linux -framework OpenGL -framework AppKit
 RM := rm -f
 
 SRC_DIR := src
@@ -12,7 +13,7 @@ OBJ_DIR := obj
 LIBFT_DIR := libft
 LIBFT_NAME := libft.a
 
-LIB := mlx_Linux\
+#LIB := mlx_Linux\
 	Xext\
 	X11
 

@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_params.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/01 13:46:02 by iortega-         ###   ########.fr       */
+/*   Created: 2023/11/01 13:43:43 by iortega-          #+#    #+#             */
+/*   Updated: 2023/11/01 13:45:31 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+int	check_params(int argc, char **argv)
 {
-	t_game	game;
-
-	if (!check_params(argc, argv))
-		return (0);
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, 1080, 720, "cub3d");
-	mlx_key_hook(game.win, select_move, &game);
-	mlx_loop(game.mlx);
-	return (0);
+	if (argc != 2)
+		return (printf("Please enter Map.\n"), 0);
+	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".cub", 4) != 0)
+		return (printf("Please enter a valid Map.\n"), 0);
+	return (1);
 }

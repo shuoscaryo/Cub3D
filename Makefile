@@ -17,6 +17,8 @@ LIB := mlx_Linux\
 	X11
 
 SRC := render/nacho.c\
+	movement.c\
+	check_params.c\
 	main.c
 
 SRC := $(addprefix $(SRC_DIR)/,$(SRC))

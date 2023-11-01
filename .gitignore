@@ -1,11 +1,23 @@
-/*
-!.gitignore
-!include/
-!libft/
-!src/
+#ignore everything
+*
+
+#dont ignore directories
+!*/
+
+#ignore all files in directories
+**/*
+
+#dont ignore directories in directories
+!**/*/
+
+#dont ignore cpp hpp and makefiles inside ex[0-9][0-9] directories
+!**/*.c
+!**/*.h
+!**/Makefile
 !Makefile
 !subject.pdf
-**/obj
+!**/subject.pdf
+
+#ignore all object files
 **/*.o
-**/*.a
-**/a.out
+*.o

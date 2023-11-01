@@ -6,7 +6,14 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/01 12:14:03 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/01 12:39:17 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3d.h"
+
+int main(int argc, char **argv)
+{
+	printf("holi\n");
+	return (0);
+}

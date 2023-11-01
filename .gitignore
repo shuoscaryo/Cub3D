@@ -1,0 +1,11 @@
+/*
+!.gitignore
+!include/
+!libft/
+!src/
+!Makefile
+!subject.pdf
+**/obj
+**/*.o
+**/*.a
+**/a.out

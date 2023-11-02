@@ -57,16 +57,20 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) $(INCLUDE_PATH_FLAG) -c -o $@ $<
 
 clean:
-	@$(RM) -r $(OBJ_DIR)
-	for i in $(LIB_PATH); do \
-		make -C $(i)) clean; \
+	@for i in $(LIB_PATH); do \
+		echo "Cleaning $$i"; \
+		make -C $$i fclean; \
 	done
-	@echo "Deleted obj files"
-	@echo "Deleted $(LIBFT_NAME)"
+	@if [ -f $(OBJ_DIR) ]; then \
+		echo "Deleted $(OBJ_DIR) folder"; \
+	fi
+	@$(RM) -r $(OBJ_DIR)
 
 fclean: clean
+	@if [ -f $(NAME) ]; then \
+		echo "Deleted $(NAME) executable";\
+	fi
 	@$(RM) $(NAME)
-	@echo "Deleted $(NAME) executable"
 	
 re: fclean all
 

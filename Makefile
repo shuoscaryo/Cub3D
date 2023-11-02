@@ -40,25 +40,27 @@ OBJ := $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 OBJ_FOLDER := $(sort $(dir $(OBJ)))
 
 # Add -l, -L and -I flags
-LIB := $(addprefix -l,$(LIB))
-LIB_PATH := $(addprefix -L,$(LIB_PATH))
-INCLUDE_PATH := $(addprefix -I,$(INCLUDE_PATH)) -I$(INCLUDE_DIR) $(addprefix -I,$(sort $(dir $(SRC))))
+LIB_FLAG := $(addprefix -l,$(LIB))
+LIB_PATH_FLAG := $(addprefix -L,$(LIB_PATH))
+INCLUDE_PATH_FLAG := $(addprefix -I,$(INCLUDE_PATH)) -I$(INCLUDE_DIR) $(addprefix -I,$(sort $(dir $(SRC))))
 
-all: $(info $(INCLUDE_PATH)) $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ) $(LIB_PATH)
-	$(CC) $(CFLAGS) $(INCLUDE_PATH) $(LIB_PATH) $(LIB) $(OBJ) -o $@
+	$(CC) $(CFLAGS) $(INCLUDE_PATH_FLAG) $(LIB_PATH_FLAG) $(OBJ) $(LIB_FLAG) -o $@
 
 $(LIB_PATH):
 	@make -C $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_FOLDER)
-	$(CC) $(CFLAGS) $(INCLUDE_PATH) -c -o $@ $<
+	$(CC) $(CFLAGS) $(INCLUDE_PATH_FLAG) -c -o $@ $<
 
 clean:
 	@$(RM) -r $(OBJ_DIR)
-	@make -C $(LIBFT_DIR) fclean
+	for i in $(LIB_PATH); do \
+		make -C $(i)) clean; \
+	done
 	@echo "Deleted obj files"
 	@echo "Deleted $(LIBFT_NAME)"
 

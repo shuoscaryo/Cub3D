@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:43:43 by iortega-          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/11/02 20:44:34 by iortega-         ###   ########.fr       */
+=======
+/*   Updated: 2023/11/02 19:01:49 by orudek           ###   ########.fr       */
+>>>>>>> a1066d3165e220db238683d8ec0b2e8556361b33
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +72,6 @@ int	read_map(t_map *map)
 			free(line);
 			continue ;
 		}
-		printf("%s\n", line);
 		aux = ft_split(line, ' ');
 		if (!aux)
 			return (printf("Error.\nMap is empty.\n"), 0);

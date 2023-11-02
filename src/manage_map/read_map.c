@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:43:43 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/02 21:09:27 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/02 21:12:57 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,9 @@ void	free_map(t_map *map)
 int	read_map(t_map *map)
 {
 	char	*line;
-	int		i;
 	char	**aux;
 	char	**colors;
 
-	i = 0;
 	init_var(map);
 	while ((line = get_next_line(map->fd)) > 0)
 	{
@@ -133,7 +131,11 @@ int	read_map(t_map *map)
 			}
 			colors = ft_split(aux[1], ',');
 			if (!colors || !colors[0] || !colors[1] || !colors[2])
+			{
+				ft_array_free(aux);
+				free(line);
 				return (printf("Error.\nColor F doesn't exist.\n"), 0);
+			}
 			map->F[0] = ft_atoi(colors[0]);
 			map->F[1] = ft_atoi(colors[1]);
 			map->F[2] = ft_atoi(colors[2]);
@@ -149,7 +151,11 @@ int	read_map(t_map *map)
 			}
 			colors = ft_split(aux[1], ',');
 			if (!colors || !colors[0] || !colors[1] || !colors[2])
+			{
+				ft_array_free(aux);
+				free(line);
 				return (printf("Error.\nColor C doesn't exist.\n"), 0);
+			}
 			map->C[0] = ft_atoi(colors[0]);
 			map->C[1] = ft_atoi(colors[1]);
 			map->C[2] = ft_atoi(colors[2]);

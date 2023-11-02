@@ -29,10 +29,9 @@ else ifeq ($(UNAME_S),Darwin)
 endif
 
 # Source files without SRC_DIR
-SRC := render/nacho.c\
-	movement.c\
+SRC := check_params.c\
 	main.c\
-	check_params.c
+	movement.c
 
 # Setup obj and src files and obj folders
 SRC := $(addprefix $(SRC_DIR)/,$(SRC))

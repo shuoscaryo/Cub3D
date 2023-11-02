@@ -2,7 +2,7 @@ NAME := cub3D
 
 CC := cc
 RM := rm -f
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -fsanitize=leak #-Wall -Wextra -Werror
 
 # proyect directories
 SRC_DIR := src
@@ -29,9 +29,10 @@ else ifeq ($(UNAME_S),Darwin)
 endif
 
 # Source files without SRC_DIR
-SRC := check_params.c\
+SRC := movement.c\
 	main.c\
-	movement.c
+	manage_map/read_map.c\
+	gnl/get_next_line.c
 
 # Setup obj and src files and obj folders
 SRC := $(addprefix $(SRC_DIR)/,$(SRC))

@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:18:14 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/01 13:46:34 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:18:00 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include "libft.h"
+# include "get_next_line.h"
 //# include <X11/keysym.h>
 //# include <X11/X.h>
 # include <sys/types.h>
@@ -44,6 +45,16 @@
 
 # define IMG_SIZE 100
 
+typedef struct s_map {
+	int		fd;
+	char	**map;
+	int		F[3];
+	int		C[3];
+	char	*NO;
+	char	*SO;
+	char	*WE;
+	char	*EA;
+}	t_map;
 
 typedef struct s_img {
 	void	*img;
@@ -55,9 +66,11 @@ typedef struct s_img {
 typedef struct s_game {
 	void	*mlx;
 	void	*win;
+	t_map	map;
 }	t_game;
 
 int	select_move(int key, t_game *game);
-int	check_params(int argc, char **argv);
+int	check_params(int argc, char **argv, t_game *game);
+int	read_map(t_map *map);
 
 #endif

@@ -12,6 +12,8 @@
 
 # Don't ignore these files
 !lib/**/*
+!maps/**/*
+!textures/**/*
 !src/**/*
 !include/**/*
 !Makefile

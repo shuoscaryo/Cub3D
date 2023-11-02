@@ -1,0 +1,8 @@
+NO ./textures/NO.txt
+SO ./textures/SO.txt
+WE ./textures/WE.txt
+EA ./textures/EA.txt
+
+F 220,100,0
+C 225,30,0
+

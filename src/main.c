@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/02 18:17:42 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/02 21:09:59 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 	if (!check_params(argc, argv, &game))
 		return (0);
 	if (!read_map(&game.map))
-		return (0);
+		return (free_map(&game.map), 0);
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, 1080, 720, "cub3d");
 	mlx_key_hook(game.win, select_move, &game);

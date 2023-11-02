@@ -74,12 +74,12 @@ fclean: clean
 re: fclean all
 
 commit:
-	git add --all
-	date="$(shell date +"%a %b %_d %H:%M")"
-	curr_branch="$(shell git branch | grep "\*" | cut -d ' ' -f2 )"
-	read -p "Commit message: " MSG
-	echo "[$curr_branch] $date - $MSG"
-	git commit -m "[$$curr_branch] $$date - $$MSG"
-	git push
+	@git add --all
+	@date="$(shell date +"%a %b %_d %H:%M")"
+	@curr_branch="$(shell git branch | grep "\*" | cut -d ' ' -f2 )"
+	@read -p "Commit message: " MSG
+	@echo "[$$curr_branch] $$date - $$MSG"
+	@git commit -m "[$$curr_branch] $$date - $$MSG"
+	#git push
 
 .PHONY: clean fclean all re $(LIB_PATH) commit

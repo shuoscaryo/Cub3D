@@ -17,7 +17,9 @@
 !Makefile
 !subject.pdf
 !**/subject.pdf
-
+!libft
 #ignore all object files
 **/*.o
 *.o
+**/*.a
+*.a

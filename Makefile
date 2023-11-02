@@ -1,50 +1,60 @@
 NAME := cub3D
 
-CC := gcc
-CFLAGS := #-Wall -Wextra -Werror
-
-UNAME_S := $(shell uname -s)
-ifeq ($(UNAME_S),Linux)
-    MINILIBX_FLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
-	LIB := mlx_Linux\
-	Xext\
-	X11
-endif
-ifeq ($(UNAME_S),Darwin)
-    MINILIBX_FLAGS = -Lmlx_linux -lmlx -Imlx_linux -framework OpenGL -framework AppKit
-endif
-
+CC := cc
 RM := rm -f
+CFLAGS := -Wall -Wextra -Werror
 
+# proyect directories
 SRC_DIR := src
 INCLUDE_DIR := include
 OBJ_DIR := obj
+LIB_DIR := lib
 
-LIBFT_DIR := libft
-LIBFT_NAME := libft.a
+#add libft library
+LIB += ft
+LIB_PATH += $(LIB_DIR)/libft
+INCLUDE_PATH += $(LIB_DIR)/libft/include
 
+# Add mlx library differently depending on OS
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+	LIB += mlx_Linux X11 Xext
+    LIB_PATH += $(LIB_DIR)/mlx_linux
+	INCLUDE_PATH += $(LIB_DIR)/mlx_linux
+else ifeq ($(UNAME_S),Darwin)
+	LIB += mlx
+    LIB_PATH += $(LIB_DIR)/mlx_mac
+	INCLUDE_PATH += $(LIB_DIR)/mlx_mac
+	CFLAGS += -framework OpenGL -framework AppKit
+endif
+
+# Source files without SRC_DIR
 SRC := render/nacho.c\
 	movement.c\
-	check_params.c\
-	main.c
+	main.c\
+	check_params.c
 
+# Setup obj and src files and obj folders
 SRC := $(addprefix $(SRC_DIR)/,$(SRC))
 OBJ := $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 OBJ_FOLDER := $(sort $(dir $(OBJ)))
-LIB_FLAG := $(addprefix -l,$(LIB))
-INCLUDE_PATH := -I$(INCLUDE_DIR) -I$(LIBFT_DIR)/include
 
-all: $(NAME)
+# Add -l, -L and -I flags
+LIB := $(addprefix -l,$(LIB))
+LIB_PATH := $(addprefix -L,$(LIB_PATH))
+INCLUDE_PATH := $(addprefix -I,$(INCLUDE_PATH)) -I$(INCLUDE_DIR) $(addprefix -I,$(sort $(dir $(SRC))))
 
-$(NAME): $(OBJ) $(LIBFT_DIR)/$(LIBFT_NAME)
-	$(CC) $(CFLAGS)  $(INCLUDE_PATH) $(OBJ) $(LIBFT_DIR)/$(LIBFT_NAME) $(MINILIBX_FLAGS) $(LIB_FLAG) -o $@
+all: $(info $(INCLUDE_PATH)) $(NAME)
+
+$(NAME): $(OBJ) $(LIB_PATH)
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) $(LIB_PATH) $(LIB) $(OBJ) -o $@
+
+$(LIB_PATH):
+	@make -C $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_FOLDER)
 	$(CC) $(CFLAGS) $(INCLUDE_PATH) -c -o $@ $<
-
-$(LIBFT_DIR)/$(LIBFT_NAME):
-	@make -C $(LIBFT_DIR) all
 
 clean:
 	@$(RM) -r $(OBJ_DIR)
@@ -58,4 +68,4 @@ fclean: clean
 	
 re: fclean all
 
-.PHONY: clean fclean all re
+.PHONY: clean fclean all re $(LIB_PATH)

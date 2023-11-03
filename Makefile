@@ -29,7 +29,12 @@ else ifeq ($(UNAME_S),Darwin)
 endif
 
 # Source files without SRC_DIR
-SRC := movement.c\
+SRC := t_keys/keys_update.c\
+	t_keys/key_cmp.c\
+	t_keys/keys_get_status.c\
+	t_keys/keys_free.c\
+	t_keys/keys_init.c\
+	movement.c\
 	main.c\
 	manage_map/read_map.c\
 	gnl/get_next_line.c

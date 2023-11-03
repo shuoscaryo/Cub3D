@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:10:56 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/03 15:18:54 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/03 15:44:46 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,5 @@
 void	keys_free(void *this)
 {
 	ft_lstfree(((t_keys *)this)->keys, free);
+	//free(this); maybe?
 }

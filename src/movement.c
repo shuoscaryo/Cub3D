@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:32:03 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/03 21:37:03 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/03 22:53:16 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int on_key_up(int key, t_game *game)
 {
 	game->keys.update(&game->keys, key, 0);
+	game->player.on_key(&game->player, &game->keys);
 	if (key == ESC)
 	{
 		mlx_destroy_window(game->mlx, game->win); //NOTE CALL game_exit
@@ -31,6 +32,7 @@ int on_key_up(int key, t_game *game)
 int	on_key_down(int key, t_game *game)
 {
 	game->keys.update(&game->keys, key, 1);
+	game->player.on_key(&game->player, &game->keys);
 	if (key == ESC)
 	{
 		mlx_destroy_window(game->mlx, game->win); //NOTE CALL game_exit
@@ -41,5 +43,5 @@ int	on_key_down(int key, t_game *game)
 		free(game->map.EA);
 		exit(0);
 	}
-	return (0); //XXX
+	return (0);
 }

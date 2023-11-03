@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:18:14 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/03 15:52:10 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/03 22:40:27 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,7 @@
 # include "libft.h"
 # include "get_next_line.h"
 # include "t_keys.h"
-//# include <X11/keysym.h>
-//# include <X11/X.h>
-//# include "get_next_line/get_next_line.h"
-
-# define IMG_SIZE 100
+# include "t_player.h"
 
 typedef struct s_map {
 	int		fd;
@@ -49,10 +45,11 @@ typedef struct s_img {
 }	t_img;
 
 typedef struct s_game {
-	void	*mlx;
-	void	*win;
-	t_map	map;
-	t_keys	keys;
+	void		*mlx;
+	void		*win;
+	t_map		map;
+	t_keys		keys;
+	t_player	player;
 }	t_game;
 
 int 	on_key_up(int key, t_game *game);

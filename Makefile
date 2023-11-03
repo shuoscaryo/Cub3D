@@ -10,6 +10,9 @@ INCLUDE_DIR := include
 OBJ_DIR := obj
 LIB_DIR := lib
 
+# Add math library
+LIB += m
+
 #add libft library
 LIB += ft
 LIB_PATH += $(LIB_DIR)/libft
@@ -37,6 +40,9 @@ SRC := t_keys/keys_update.c\
 	movement.c\
 	main.c\
 	manage_map/read_map.c\
+	t_player/player_init.c\
+	t_player/player_move.c\
+	t_player/player_on_key.c\
 	gnl/get_next_line.c
 
 # Setup obj and src files and obj folders

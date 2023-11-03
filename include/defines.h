@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   defines.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/03 22:11:53 by orudek            #+#    #+#             */
+/*   Updated: 2023/11/03 22:25:50 by orudek           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DEFINES_H
 # define DEFINES_H
 
@@ -9,12 +21,16 @@
 #  define W 119
 #  define A 97
 #  define S 115
+#  define RIGHT 65363
+#  define LEFT 65361
 #  define ESC 65307
 # elif defined(__APPLE__)
 #  define D 2
 #  define W 13
 #  define A 0
 #  define S 1
+#  define RIGHT 124
+#  define LEFT 123
 #  define ESC 53
 # endif
 
@@ -28,8 +44,15 @@ enum {
 	ON_DESTROY = 17
 };
 
-# define NO_EVENT_MASK 0L
-# define KEY_PRESS_MASK 1L << 0
-# define KEY_RELEASE_MASK 1L << 1
+enum {
+	NO_EVENT_MASK = 0L,
+	KEY_PRESS_MASK = (1L<<0),
+	KEY_RELEASE_MASK = (1L<<1)
+};
 
+# define PLAYER_SIZE 0.2f
+# define PLAYER_MOVE_SPEED 1.0f
+# define PLAYER_ROT_SPEED 0.1f
+
+# define PI 3.14159265359
 #endif

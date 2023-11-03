@@ -75,7 +75,6 @@ fclean: clean
 re: fclean all
 
 commit:
-	git add --all
 	git status -s
 	@$(eval date=$(shell date +"%Y-%m-%d-%H:%M"))
 	@$(eval curr_branch=$(shell git branch | grep "\*" | cut -d ' ' -f2 ))

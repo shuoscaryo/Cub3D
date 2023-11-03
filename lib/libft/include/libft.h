@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 15:42:27 by orudek            #+#    #+#             */
-/*   Updated: 2023/09/17 17:22:17 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/03 14:57:34 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ void	ft_lstfree(t_list *lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	ft_lstpop(t_list **lst, int index, void (*del)(void *));
+void	*ft_lstfind(t_list *lst, void *data, int (*cmp)(void *, void *));
 
 #endif

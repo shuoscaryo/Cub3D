@@ -1,0 +1,35 @@
+#ifndef DEFINES_H
+# define DEFINES_H
+
+# define WIN_WIDTH 1080
+# define WIN_HEIGHT 720
+
+# if defined(__linux__)
+#  define D 100
+#  define W 119
+#  define A 97
+#  define S 115
+#  define ESC 65307
+# elif defined(__APPLE__)
+#  define D 2
+#  define W 13
+#  define A 0
+#  define S 1
+#  define ESC 53
+# endif
+
+enum {
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
+};
+
+# define NO_EVENT_MASK 0L
+# define KEY_PRESS_MASK 1L << 0
+# define KEY_RELEASE_MASK 1L << 1
+
+#endif

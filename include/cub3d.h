@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:18:14 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/02 21:09:39 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/03 14:13:32 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,16 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+
+# include "defines.h"
 # include "libft.h"
 # include "get_next_line.h"
 //# include <X11/keysym.h>
 //# include <X11/X.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
 //# include "get_next_line/get_next_line.h"
-
-# if defined(__linux__)
-
-#  define D 100
-#  define W 119
-#  define A 97
-#  define S 115
-#  define ESC 65307
-
-# elif defined(__APPLE__)
-
-#  define D 2
-#  define W 13
-#  define A 0
-#  define S 1
-#  define ESC 53
-
-# endif
 
 # define IMG_SIZE 100
 
@@ -69,7 +53,8 @@ typedef struct s_game {
 	t_map	map;
 }	t_game;
 
-int		select_move(int key, t_game *game);
+int 	on_key_up(int key, t_game *game);
+int		on_key_down(int key, t_game *game);
 int		check_params(int argc, char **argv, t_game *game);
 int		read_map(t_map *map);
 void	free_map(t_map *map);

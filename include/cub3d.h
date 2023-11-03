@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:18:14 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/03 14:13:32 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/03 15:52:10 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "defines.h"
 # include "libft.h"
 # include "get_next_line.h"
+# include "t_keys.h"
 //# include <X11/keysym.h>
 //# include <X11/X.h>
 //# include "get_next_line/get_next_line.h"
@@ -51,6 +52,7 @@ typedef struct s_game {
 	void	*mlx;
 	void	*win;
 	t_map	map;
+	t_keys	keys;
 }	t_game;
 
 int 	on_key_up(int key, t_game *game);

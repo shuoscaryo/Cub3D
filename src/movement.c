@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:32:03 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/03 14:18:27 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/03 16:05:51 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int on_key_up(int key, t_game *game)
 {
-	printf("called on_key_up :");
+	game->keys.update(&game->keys, key, 0);
 	if (key == ESC)
 	{
 		mlx_destroy_window(game->mlx, game->win);
@@ -25,20 +25,12 @@ int on_key_up(int key, t_game *game)
 		free(game->map.EA);
 		exit(0);
 	}
-	else if (key == W)
-		printf("W\n");
-	else if (key == A)
-		printf("A\n");
-	else if (key == S)
-		printf("S\n");
-	else if (key == D)
-		printf("D\n");
 	return (0);
 }
 
 int	on_key_down(int key, t_game *game)
 {
-	printf("called on_key_down: ");
+	game->keys.update(&game->keys, key, 1);
 	if (key == ESC)
 	{
 		mlx_destroy_window(game->mlx, game->win);
@@ -49,13 +41,5 @@ int	on_key_down(int key, t_game *game)
 		free(game->map.EA);
 		exit(0);
 	}
-	else if (key == W)
-		printf("W\n");
-	else if (key == A)
-		printf("A\n");
-	else if (key == S)
-		printf("S\n");
-	else if (key == D)
-		printf("D\n");
-	return (0);
+	return (0); //XXX
 }

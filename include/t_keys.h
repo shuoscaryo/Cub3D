@@ -6,12 +6,12 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:38:58 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/04 19:14:54 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/04 19:25:24 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEY_HANDLE_H
-# define KEY_HANDLE_H
+#ifndef T_KEYS_H
+# define T_KEYS_H
 
 # include "libft.h"
 

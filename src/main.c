@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/04 12:05:38 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/04 19:08:50 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ void print_pos(t_player *player)
 	printf("x: %f, y: %f, rotation: %f\n", player->x, player->y, player->rotation * 180 / PI);
 }
 
-void update(t_game *game)
+int update(t_game *game)
 {
 	game->player.move(&game->player, 0.001);
-	print_pos(&game->player);
+	return (0);
+	//print_pos(&game->player);
 }
 
 int	main(int argc, char **argv)
@@ -29,7 +30,7 @@ int	main(int argc, char **argv)
 
 	if (!check_params(argc, argv, &game))
 		return (0);
-	if (!read_map(&game.map))
+	if (!read_map(&game.map, argv[1]))
 		return (0);
 	//game_init(&game);
 	keys_init(&game.keys);

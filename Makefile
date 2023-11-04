@@ -2,7 +2,7 @@ NAME := cub3D
 
 CC := cc
 RM := rm -f
-CFLAGS := -fsanitize=leak #-Wall -Wextra -Werror
+CFLAGS := #-Wall -Wextra -Werror
 
 # proyect directories
 SRC_DIR := src
@@ -24,6 +24,7 @@ ifeq ($(UNAME_S),Linux)
 	LIB += mlx_Linux X11 Xext
     LIB_PATH += $(LIB_DIR)/mlx_linux
 	INCLUDE_PATH += $(LIB_DIR)/mlx_linux
+	CFLAGS += -fsanitize=leak
 else ifeq ($(UNAME_S),Darwin)
 	LIB += mlx
     LIB_PATH += $(LIB_DIR)/mlx_mac

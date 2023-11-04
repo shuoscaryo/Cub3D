@@ -2,7 +2,7 @@ NAME := cub3D
 
 CC := cc
 RM := rm -f
-CFLAGS := #-Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror
 
 # proyect directories
 SRC_DIR := src
@@ -17,6 +17,7 @@ LIB += m
 LIB += ft
 LIB_PATH += $(LIB_DIR)/libft
 INCLUDE_PATH += $(LIB_DIR)/libft/include
+LOCAL_MAKE += $(LIB_DIR)/libft/libft.a
 
 # Add mlx library differently depending on OS
 UNAME_S := $(shell uname -s)
@@ -25,11 +26,13 @@ ifeq ($(UNAME_S),Linux)
     LIB_PATH += $(LIB_DIR)/mlx_linux
 	INCLUDE_PATH += $(LIB_DIR)/mlx_linux
 	CFLAGS += -fsanitize=leak
+	LOCAL_MAKE += $(LIB_DIR)/mlx_linux/libmlx_Linux.a
 else ifeq ($(UNAME_S),Darwin)
 	LIB += mlx
     LIB_PATH += $(LIB_DIR)/mlx_mac
 	INCLUDE_PATH += $(LIB_DIR)/mlx_mac
-	CFLAGS += -framework OpenGL -framework AppKit
+	FRAMEWORK += -framework OpenGL -framework AppKit
+	LOCAL_MAKE += $(LIB_DIR)/mlx_mac/libmlx.a
 endif
 
 # Source files without SRC_DIR
@@ -58,11 +61,11 @@ INCLUDE_PATH_FLAG := $(addprefix -I,$(INCLUDE_PATH)) -I$(INCLUDE_DIR) $(addprefi
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIB_PATH)
-	$(CC) $(CFLAGS) $(INCLUDE_PATH_FLAG) $(LIB_PATH_FLAG) $(OBJ) $(LIB_FLAG) -o $@
+$(NAME): $(OBJ) $(LOCAL_MAKE)
+	$(CC) $(CFLAGS) $(INCLUDE_PATH_FLAG) $(LIB_PATH_FLAG) $(OBJ) $(LIB_FLAG) $(FRAMEWORK) -o $@
 
-$(LIB_PATH):
-	@make -C $@
+%.a:
+	@make -C $(dir $@)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_FOLDER)

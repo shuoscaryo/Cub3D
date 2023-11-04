@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_keys.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:38:58 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/04 12:10:31 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/04 19:14:54 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	key_cmp(void *key1, void *key2);
 typedef struct s_keys
 {
 	t_list	*keys;
-	void	(*update)(struct s_keys *this, int keycode, int status);
+	int		(*update)(struct s_keys *this, int keycode, int status);
 	void	(*free)(void *this);
 	int		(*get_status)(struct s_keys *this, int keycode);
 }	t_keys;

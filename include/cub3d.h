@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:18:14 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/04 13:32:02 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/04 14:25:10 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,7 @@ typedef struct s_map {
 	char	*EA;
 }	t_map;
 
-typedef struct s_img {
-	void	*img;
-	int		img_width;
-	int		img_height;
-	char	*path;
-}	t_img;
+
 
 typedef struct s_game {
 	void		*mlx;

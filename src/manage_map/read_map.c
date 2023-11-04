@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:43:43 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/04 13:21:13 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/04 13:48:33 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	check_params(int argc, char **argv, t_game *game)
 	game->map.fd = open(argv[1], O_RDONLY);
 	if (game->map.fd == -1)
 		return (printf("Error.\nMap doesn't exist.\n"), 0);
+	close(game->map.fd);
 	return (1);
 }
 
@@ -70,21 +71,46 @@ int	all_data(t_map *map)
 	return (0);
 }
 
-int	get_map(t_map *map)
+int	get_lines(t_map *map)
 {
-	
+	int		lines;
+	char	*buff;
+
+	lines = 0;
+	while ((buff = get_next_line(map->fd)) > 0)
+	{
+		free(buff);
+		lines++;
+	}
+	close(map->fd);
+	return (lines);
 }
 
-int	read_map(t_map *map)
+int	get_map(t_map *map)
+{
+	int	lines;
+
+	lines = get_lines(map);
+	printf("lines: %d\n", lines);
+	return (1);
+}
+
+int	read_map(t_map *map, char *path)
 {
 	char	*line;
 	char	**aux;
 	char	**colors;
+	int		m_start;
 
+	map->fd = open(path, O_RDONLY);
+	if (map->fd == -1)
+		return (printf("Error.\nUnexpected error reading Map.\n"), 0);
 	init_var(map);
+	m_start = 0;
 	while ((line = get_next_line(map->fd)) > 0)
 	{
 		delete_n(line);
+		m_start++;
 		if (*line == '\0')
 		{
 			free(line);
@@ -184,5 +210,7 @@ int	read_map(t_map *map)
 		if (all_data(map))
 			break ;
 	}
+	printf("m_start: %d\n", m_start);
+	get_map(map);
 	return (1);
 }

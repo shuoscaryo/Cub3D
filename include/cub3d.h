@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:18:14 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/03 22:40:27 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/04 12:40:58 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,7 @@ typedef struct s_map {
 	char	*EA;
 }	t_map;
 
-typedef struct s_img {
-	void	*img;
-	int		img_width;
-	int		img_height;
-	char	*path;
-}	t_img;
+
 
 typedef struct s_game {
 	void		*mlx;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/03 22:37:56 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/04 12:05:38 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	//if (!check_params(argc, argv, &game))
-	//	return (0);
+	if (!check_params(argc, argv, &game))
+		return (0);
+	if (!read_map(&game.map))
+		return (0);
 	//game_init(&game);
 	keys_init(&game.keys);
 	player_init(&game.player, 100, 100, 0);

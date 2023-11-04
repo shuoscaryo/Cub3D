@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:32:03 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/03 22:53:16 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/04 12:05:56 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,6 @@ int on_key_up(int key, t_game *game)
 {
 	game->keys.update(&game->keys, key, 0);
 	game->player.on_key(&game->player, &game->keys);
-	if (key == ESC)
-	{
-		mlx_destroy_window(game->mlx, game->win); //NOTE CALL game_exit
-		game->win = NULL;
-		free(game->map.SO);
-		free(game->map.NO);
-		free(game->map.WE);
-		free(game->map.EA);
-		exit(0);
-	}
 	return (0);
 }
 
@@ -37,6 +27,7 @@ int	on_key_down(int key, t_game *game)
 	{
 		mlx_destroy_window(game->mlx, game->win); //NOTE CALL game_exit
 		game->win = NULL;
+		game->keys.free(&game->keys);
 		free(game->map.SO);
 		free(game->map.NO);
 		free(game->map.WE);

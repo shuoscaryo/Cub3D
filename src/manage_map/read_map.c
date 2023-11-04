@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:43:43 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/02 21:12:57 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/04 13:21:13 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,18 @@ void	free_map(t_map *map)
 		free(map->WE);
 	if (map->EA)
 		free(map->EA);
+}
+
+int	all_data(t_map *map)
+{
+	if (map->NO && map->SO && map->WE && map->EA && map->F[0] != -1 && map->C[0] != -1)
+		return (1);
+	return (0);
+}
+
+int	get_map(t_map *map)
+{
+	
 }
 
 int	read_map(t_map *map)
@@ -169,6 +181,8 @@ int	read_map(t_map *map)
 		}
 		ft_array_free(aux);
 		free(line);
+		if (all_data(map))
+			break ;
 	}
 	return (1);
 }

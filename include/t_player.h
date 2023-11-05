@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 19:24:20 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/03 22:04:50 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/05 16:38:29 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ typedef struct s_player
 	float x;
 	float y;
 	float rotation;
-	float vx;
-	float vy;
-	float rotation_speed;
+	float v_front;
+	float v_side;
+	float v_rotation;
 	float size; // player is a cylinder, size is the diameter
 	void (*move)(struct s_player *this, float delta_time); //TODO check for collisions
 	void (*on_key)(struct s_player *this, t_keys *game);

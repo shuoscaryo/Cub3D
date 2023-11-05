@@ -2,7 +2,7 @@ NAME := cub3D
 
 CC := cc
 RM := rm -f
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -fsanitize=leak -Wall -Wextra -Werror
 
 # proyect directories
 SRC_DIR := src
@@ -36,27 +36,31 @@ else ifeq ($(UNAME_S),Darwin)
 endif
 
 # Source files without SRC_DIR
-SRC := t_keys/keys_update.c\
-	t_keys/key_cmp.c\
-	t_keys/keys_get_status.c\
-	t_keys/keys_free.c\
-	t_keys/keys_init.c\
-	t_textures/t_img/img_pixel_put.c\
-	t_textures/t_img/img_free.c\
-	t_textures/t_img/img_get_pixel.c\
-	t_textures/t_img/img_new.c\
-	t_textures/t_img/img_cmp.c\
-	t_textures/textures_add_texture.c\
-	t_textures/textures_get_texture.c\
-	t_textures/textures_free.c\
-	t_textures/textures_init.c\
-	movement.c\
+SRC := movement.c\
 	main.c\
 	manage_map/read_map.c\
-	t_player/player_init.c\
+	manage_map/get_map.c\
+	manage_map/map_utils.c\
+	manage_map/check_map.c\
+	manage_map/get_textures.c\
+	gnl/get_next_line.c\
+	t_keys/key_cmp.c\
+	t_keys/keys_free.c\
+	t_keys/keys_get_status.c\
+	t_keys/keys_update.c\
+	t_keys/keys_init.c\
+	t_textures/t_img/img_pixel_put.c\
+	t_textures/t_img/img_new.c\
+	t_textures/t_img/img_free.c\
+	t_textures/t_img/img_cmp.c\
+	t_textures/t_img/img_get_pixel.c\
+	t_textures/textures_free.c\
+	t_textures/textures_init.c\
+	t_textures/textures_add_texture.c\
+	t_textures/textures_get_texture.c\
 	t_player/player_move.c\
-	t_player/player_on_key.c\
-	gnl/get_next_line.c
+	t_player/player_init.c\
+	t_player/player_on_key.c
 
 # Setup obj and src files and obj folders
 SRC := $(addprefix $(SRC_DIR)/,$(SRC))

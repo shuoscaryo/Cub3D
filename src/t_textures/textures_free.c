@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 14:17:40 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/05 14:42:28 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/05 18:58:12 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	textures_free(t_textures *this, void *mlx)
 
 	if (!this)
 		return ;
-	while(this->textures)
+	while (this->textures)
 	{
 		tmp = this->textures;
 		this->textures = this->textures->next;

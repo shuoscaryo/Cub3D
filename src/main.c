@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/05 17:07:07 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/05 18:34:59 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,21 @@ int update(t_game *game)
 {
 	game->player.move(&game->player, 0.001);
 	return (0);
+}
+
+void print_img(void *img) //XXX
+{
+	t_img *i = (t_img *)img;
+
+	printf("IMAGE INFO:\n");
+	printf("\tfilename: %s\n", i->filename);
+	printf("\timg: %p\n", i->img);
+	printf("\taddr: %p\n", i->addr);
+	printf("\tsize_line: %d\n", i->size_line);
+	printf("\tbits_per_pixel: %d\n", i->bits_per_pixel);
+	printf("\tendian: %d\n", i->endian);
+	printf("\theight: %d\n", i->height);
+	printf("\twidth: %d\n", i->width);
 }
 
 int	main(int argc, char **argv)
@@ -29,6 +44,17 @@ int	main(int argc, char **argv)
 	//game_init(&game);
 	keys_init(&game.keys);
 	player_init(&game.player, 0, 0, 0);
+	printf("adding textures...\n");
+	textures_init(&game.textures);
+	printf("adding NO\n");
+	game.textures.add_texture(&game.textures, game.map.NO, game.mlx);
+	printf("adding SO\n");
+	game.textures.add_texture(&game.textures, game.map.SO, game.mlx);
+	printf("adding EA\n");
+	game.textures.add_texture(&game.textures, game.map.EA, game.mlx);
+	printf("adding WE\n");
+	game.textures.add_texture(&game.textures, game.map.WE, game.mlx);
+	
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
 	//mlx_hook(game.win, ON_DESTROY, NO_EVENT_MASK, ft_game_exit, &game);

@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:18:14 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/05 13:29:29 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/05 18:28:51 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "get_next_line.h"
 # include "t_keys.h"
 # include "t_player.h"
+# include "t_textures.h"
 
 typedef struct s_map {
 	int		fd;
@@ -45,6 +46,7 @@ typedef struct s_game {
 	t_map		map;
 	t_keys		keys;
 	t_player	player;
+	t_textures	textures;
 }	t_game;
 
 int 	on_key_up(int key, t_game *game);

@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:43:43 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/05 15:35:43 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/05 15:42:29 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,27 +71,146 @@ int	all_data(t_map *map)
 	return (0);
 }
 
-int	get_lines(t_map *map)
+int	parse_line(char *str, int *player)
 {
-	int		lines;
-	char	*buff;
+	int i;
 
-	lines = 0;
-	while ((unsigned long long)(buff = get_next_line(map->fd)) > 0)
+	i = 0;
+	while (str[i])
 	{
-		free(buff);
-		lines++;
+		if (str[i] != '0' && str[i] != '1' && str[i] != ' ')
+		{
+			if (str[i] == 'N' || str[i] == 'S' || str[i] == 'W' || str[i] == 'E')
+			{
+				if (*player == 1)
+					return (0);
+				*player = 1;
+			}
+			else
+				return (0);
+		}
+		i++;
 	}
-	close(map->fd);
-	return (lines);
+	return (1);
 }
 
 int	get_map(t_map *map)
 {
-	int	lines;
+	char	*buff;
+	t_list	*list;
+	t_list	*aux;
+	int		i;
+	int		player;
 
-	lines = get_lines(map);
-	printf("lines: %d\n", lines);
+	list = NULL;
+	player = 0;
+	buff = get_next_line(map->fd);
+	while (buff != NULL && buff[0] == '\n')
+	{
+		free(buff);
+		buff = get_next_line(map->fd);
+	}
+	while (buff != NULL)
+	{
+		if (buff[0] == '\n')
+		{
+			free(buff);
+			buff = get_next_line(map->fd);
+			break;
+		}
+		delete_n(buff);
+		if (parse_line(buff, &player))
+			ft_lstadd_back_content(&list, buff);
+		else
+		{
+			printf("Error.\nMap is invalid.\n");
+			free(buff);
+			return (ft_lstfree(list, free), 0);
+		}
+		buff = get_next_line(map->fd);
+	}
+	if (player == 0)
+	{
+		printf("Error.\nMap is invalid.\n");
+		free(buff);
+		return (ft_lstfree(list, free), 0);
+	}
+	while (buff != NULL)
+	{
+		if (buff[0] == '\n')
+		{
+			free(buff);
+			buff = get_next_line(map->fd);
+			continue ;
+		}
+		else
+		{
+			printf("Error.\nMap is invalid.\n");
+			free(buff);
+			return (ft_lstfree(list, free), 0);
+		}
+	}
+	map->map = malloc(sizeof(char *) * (ft_lstsize(list) + 1));
+	if (!map->map)
+		return (printf("Error.\nMalloc error (map).\n"), 0);
+	i = 0;
+	while (list)
+	{
+		map->map[i] = list->content;
+		aux = list;
+		list = list->next;
+		free(aux);
+		printf("%s\n", map->map[i]);
+		i++;
+	}
+	map->map[i] = NULL;
+	close(map->fd);
+	return (1);
+}
+
+int	valid_map(char **map)
+{
+	int	i;
+	int	j;
+	int	last;
+
+	i = 0;
+	while (map[i])
+		i++;
+	last = i - 1;
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (i == 0 || i == last)
+			{
+				if (map[i][j] != '1' && map[i][j] != ' ')
+					return (printf("Error.\nMap is invalid.\n"), 0);
+			}
+			else
+			{
+				if (j == 0 || j == (int)(ft_strlen(map[i]) - 1))
+				{
+					if (map[i][j] != '1' && map[i][j] != ' ')
+						return (printf("Error.\nMap is invalid.\n"), 0);
+				}
+				else
+				{
+					if (map[i][j] != '1' && map[i][j] != ' ')
+					{
+						if (j > (int)(ft_strlen(map[i + 1]) - 1) || j > (int)(ft_strlen(map[i - 1]) - 1))
+							return (printf("Error.\nMap is invalid.\n"), 0);
+						if (map[i - 1][j] == ' ' || map[i + 1][j] == ' ' || map[i][j - 1] == ' ' || map[i][j + 1] == ' ')
+							return (printf("Error.\nMap is invalid.\n"), 0);
+					}
+				}
+			}
+			j++;
+		}
+		i++;
+	}
 	return (1);
 }
 
@@ -100,20 +219,19 @@ int	read_map(t_map *map, char *path)
 	char	*line;
 	char	**aux;
 	char	**colors;
-	int		m_start;
 
 	map->fd = open(path, O_RDONLY);
 	if (map->fd == -1)
 		return (printf("Error.\nUnexpected error reading Map.\n"), 0);
 	init_var(map);
-	m_start = 0;
-	while ((unsigned long long)(line = get_next_line(map->fd)) > 0)
+	line = get_next_line(map->fd);
+	while (line != NULL)
 	{
 		delete_n(line);
-		m_start++;
 		if (*line == '\0')
 		{
 			free(line);
+			line = get_next_line(map->fd);
 			continue ;
 		}
 		aux = ft_split(line, ' ');
@@ -171,6 +289,7 @@ int	read_map(t_map *map, char *path)
 			if (!colors || !colors[0] || !colors[1] || !colors[2])
 			{
 				ft_array_free(aux);
+				ft_array_free(colors);
 				free(line);
 				return (printf("Error.\nColor F doesn't exist.\n"), 0);
 			}
@@ -184,6 +303,7 @@ int	read_map(t_map *map, char *path)
 			if (aux[1] == NULL || map->C[0] != -1)
 			{
 				ft_array_free(aux);
+				ft_array_free(colors);
 				free(line);
 				return (printf("Error.\nColor C bad set.\n"), 0);
 			}
@@ -209,8 +329,11 @@ int	read_map(t_map *map, char *path)
 		free(line);
 		if (all_data(map))
 			break ;
+		line = get_next_line(map->fd);
 	}
-	printf("m_start: %d\n", m_start);
-	get_map(map);
+	if (!get_map(map))
+		exit(0);
+	if (!valid_map(map->map))
+		exit(0);
 	return (1);
 }

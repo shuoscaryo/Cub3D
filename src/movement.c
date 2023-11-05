@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:32:03 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/04 12:05:56 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/05 12:23:58 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	on_key_down(int key, t_game *game)
 		mlx_destroy_window(game->mlx, game->win); //NOTE CALL game_exit
 		game->win = NULL;
 		game->keys.free(&game->keys);
+		ft_array_free(game->map.map);
 		free(game->map.SO);
 		free(game->map.NO);
 		free(game->map.WE);

@@ -17,6 +17,7 @@ SRC := ft_lstfree.c\
 	ft_calloc.c\
 	ft_toupper.c\
 	ft_strchr.c\
+	ft_lstadd_front_content.c\
 	ft_msg_perror.c\
 	ft_split.c\
 	ft_putstr_fd.c\

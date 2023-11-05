@@ -36,7 +36,14 @@ else ifeq ($(UNAME_S),Darwin)
 endif
 
 # Source files without SRC_DIR
-SRC := t_keys/keys_update.c\
+SRC := t_walls/wall_init.c\
+	t_walls/walls_get_hash.c\
+	t_walls/walls_free.c\
+	t_walls/wall_cmp.c\
+	t_walls/walls_add_wall.c\
+	t_walls/walls_get_wall.c\
+	t_walls/walls_init.c\
+	t_keys/keys_update.c\
 	t_keys/key_cmp.c\
 	t_keys/keys_get_status.c\
 	t_keys/keys_free.c\

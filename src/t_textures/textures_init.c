@@ -6,13 +6,13 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 13:39:08 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/05 13:41:39 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/05 18:58:48 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t_textures.h"
 
-void   textures_init(t_textures *this)
+void	textures_init(t_textures *this)
 {
 	this->textures = NULL;
 	this->add_texture = textures_add_texture;

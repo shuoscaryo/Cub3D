@@ -6,13 +6,13 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 13:42:01 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/05 14:40:58 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/05 18:57:46 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t_textures.h"
 
-int textures_add_texture(t_textures *this, char *filename, void *mlx)
+int	textures_add_texture(t_textures *this, char *filename, void *mlx)
 {
 	t_img	*new;
 

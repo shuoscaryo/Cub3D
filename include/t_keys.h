@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:38:58 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/04 19:25:24 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/05 20:48:12 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_key
 	int		status;
 }	t_key;
 
-int	key_cmp(void *key1, void *key2);
+int		key_cmp(void *key1, void *key2);
 
 typedef struct s_keys
 {

@@ -61,6 +61,7 @@ SRC := t_keys/keys_update.c\
 	t_player/player_init.c\
 	t_player/player_move.c\
 	t_player/player_on_key.c\
+	gnl/get_next_line_utils.c\
 	gnl/get_next_line.c
 
 # Setup obj and src files and obj folders

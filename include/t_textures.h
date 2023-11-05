@@ -6,12 +6,12 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 12:40:30 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/05 13:58:19 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/05 20:50:26 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_IMG_H
-# define T_IMG_H
+#ifndef T_TEXTURES_H
+# define T_TEXTURES_H
 # include "libft.h"
 
 typedef struct s_img

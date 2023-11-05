@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:18:14 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/05 20:34:16 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/05 20:47:29 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_game {
 	t_textures	textures;
 }	t_game;
 
-int 	on_key_up(int key, t_game *game);
+int		on_key_up(int key, t_game *game);
 int		on_key_down(int key, t_game *game);
 int		check_params(int argc, char **argv, t_game *game);
 int		game_exit(t_game *game);

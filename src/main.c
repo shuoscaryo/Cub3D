@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/04 19:08:50 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/05 15:34:02 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
+	printf("in map branch\n");
 	if (!check_params(argc, argv, &game))
 		return (0);
 	if (!read_map(&game.map, argv[1]))

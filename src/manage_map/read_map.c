@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:43:43 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/04 13:48:33 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/05 15:35:43 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	get_lines(t_map *map)
 	char	*buff;
 
 	lines = 0;
-	while ((buff = get_next_line(map->fd)) > 0)
+	while ((unsigned long long)(buff = get_next_line(map->fd)) > 0)
 	{
 		free(buff);
 		lines++;
@@ -107,7 +107,7 @@ int	read_map(t_map *map, char *path)
 		return (printf("Error.\nUnexpected error reading Map.\n"), 0);
 	init_var(map);
 	m_start = 0;
-	while ((line = get_next_line(map->fd)) > 0)
+	while ((unsigned long long)(line = get_next_line(map->fd)) > 0)
 	{
 		delete_n(line);
 		m_start++;

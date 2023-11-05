@@ -2,7 +2,7 @@ NAME := cub3D
 
 CC := cc
 RM := rm -f
-CFLAGS := -fsanitize=leak -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror
 
 # proyect directories
 SRC_DIR := src

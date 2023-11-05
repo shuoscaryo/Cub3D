@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:18:14 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/05 13:29:29 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/05 18:43:42 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,7 @@
 # include "get_next_line.h"
 # include "t_keys.h"
 # include "t_player.h"
-
-typedef struct s_map {
-	int		fd;
-	char	**map;
-	int		F[3];
-	int		C[3];
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
-}	t_map;
-
-
+# include "t_map.h"
 
 typedef struct s_game {
 	void		*mlx;
@@ -50,7 +38,6 @@ typedef struct s_game {
 int 	on_key_up(int key, t_game *game);
 int		on_key_down(int key, t_game *game);
 int		check_params(int argc, char **argv, t_game *game);
-int		read_map(t_map *map, char *path);
-void	free_map(t_map *map);
+
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:18:14 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/05 19:01:52 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/05 20:34:16 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ typedef struct s_game {
 int 	on_key_up(int key, t_game *game);
 int		on_key_down(int key, t_game *game);
 int		check_params(int argc, char **argv, t_game *game);
-
+int		game_exit(t_game *game);
 
 #endif

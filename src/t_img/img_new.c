@@ -6,21 +6,13 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 20:31:01 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/04 14:08:12 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/05 13:14:43 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t_img.h"
 #include "mlx.h"
 #include "libft.h"
-
-static char	ft_set_filename(t_img *img, const char *filename)
-{
-	img->filename = ft_strdup(filename);
-	if (!(img->filename))
-		return (0);
-	return (1);
-}
 
 static char	ft_malloc_img(t_img **img)
 {
@@ -30,33 +22,25 @@ static char	ft_malloc_img(t_img **img)
 	(*img)->filename = NULL;
 	(*img)->img = NULL;
 	(*img)->addr = NULL;
+	(*img)->put_pixel = img_pixel_put;
+	(*img)->get_pixel = img_get_pixel;
+	(*img)->free = ft_img_free;
 	return (1);
 }
 
-t_img	*ft_img_new(void *mlx, char *filename, int width, int height)
+t_img	*img_new(void *mlx, char *filename)
 {
-	t_img	*img;
+	t_img *this;
 
-	if (!filename || !ft_malloc_img(&img))
+	if (!filename || !ft_malloc_img(&this))
 		return (NULL);
-	if (!ft_set_filename(img, filename))
-		return ((void *)(long)ft_img_free(mlx, &img));
-	img->img = mlx_xpm_file_to_image(mlx, filename, &img->width, &img->height);
-	if (!(img->img))
-		return ((void *)(long)ft_img_free(mlx, &img));
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
-			&img->size_line, &img->endian);
-	if (height <= 0 && width <= 0)
-	{
-		height = img->height;
-		width = img->width;
-		return (img);
-	}
-	else if (height <= 0)
-		height = (int)((float)img->height / img->width * width);
-	else if (width <= 0)
-		width = (int)((float)img->width / img->height * height);
-	if (!ft_img_resize(mlx, img, width, height))
-		return ((void *)(long)ft_img_free(mlx, &img));
-	return (img);
+	this->filename = ft_strdup(filename);
+	if (!(this->filename))
+		return (this->free(img, mlx), free(img), NULL);
+	this->img = mlx_xpm_file_to_image(mlx, filename, &this->width, &this->height);
+	if (!(this->img))
+		return (this->free(img, mlx), free(img), NULL);
+	this->addr = mlx_get_data_addr(this->img, &this->bits_per_pixel,
+			&this->size_line, &this->endian);
+	return (this);
 }

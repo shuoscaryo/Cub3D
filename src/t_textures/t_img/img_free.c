@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img_get_pixel.c                                    :+:      :+:    :+:   */
+/*   img_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/10 20:18:13 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/05 13:13:15 by orudek           ###   ########.fr       */
+/*   Created: 2023/08/11 22:24:00 by orudek            #+#    #+#             */
+/*   Updated: 2023/11/05 14:34:19 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_img.h"
+#include "t_textures.h"
+#include "mlx.h"
+#include <stdlib.h>
 
-int	ft_img_get_pixel(t_img *this, int x, int y)
+void	img_free(t_img *this, void *mlx)
 {
-	int	color;
-
-	color = *(int *)(this->addr + (y * this->size_line
-				+ x * (this->bits_per_pixel / 8)));
-	return (color);
+	if (this->img)
+	{
+		mlx_destroy_image(mlx, this->img);
+		this->img = NULL;
+		this->addr = NULL;
+	}
+	if (this->filename)
+	{
+		free(this->filename);
+		this->filename = NULL;
+	}
 }

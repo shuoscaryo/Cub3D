@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img_pixel_put.c                                    :+:      :+:    :+:   */
+/*   img_cmp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/10 20:15:48 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/05 13:16:13 by orudek           ###   ########.fr       */
+/*   Created: 2023/11/05 13:58:45 by orudek            #+#    #+#             */
+/*   Updated: 2023/11/05 14:00:20 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_img.h"
+#include "t_textures.h"
 
-void	ft_img_pixel_put(t_img *this, int x, int y, int color)
+int img_cmp(void *img1, void *img2)
 {
-	char	*dst;
+	t_img *i1;
+	t_img *i2;
 
-	dst = img->addr + (y * this->size_line + x * (this->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	i1 = (t_img *)img1;
+	i2 = (t_img *)img2;
+	return (ft_strcmp(i1->filename, i2->filename));
 }

@@ -41,6 +41,15 @@ SRC := t_keys/keys_update.c\
 	t_keys/keys_get_status.c\
 	t_keys/keys_free.c\
 	t_keys/keys_init.c\
+	t_textures/t_img/img_pixel_put.c\
+	t_textures/t_img/img_free.c\
+	t_textures/t_img/img_get_pixel.c\
+	t_textures/t_img/img_new.c\
+	t_textures/t_img/img_cmp.c\
+	t_textures/textures_add_texture.c\
+	t_textures/textures_get_texture.c\
+	t_textures/textures_free.c\
+	t_textures/textures_init.c\
 	movement.c\
 	main.c\
 	manage_map/read_map.c\

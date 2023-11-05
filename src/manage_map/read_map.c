@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:43:43 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/05 13:21:46 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/05 14:30:23 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,12 @@ int	get_map(t_map *map)
 		}
 		buff = get_next_line(map->fd);
 	}
+	if (player == 0)
+	{
+		printf("Error.\nMap is invalid.\n");
+		free(buff);
+		return (ft_lstfree(list, free), 0);
+	}
 	while (buff > 0)
 	{
 		if (buff[0] == '\n')
@@ -159,6 +165,52 @@ int	get_map(t_map *map)
 	}
 	map->map[i] = NULL;
 	close(map->fd);
+	return (1);
+}
+
+int	valid_map(char **map)
+{
+	int	i;
+	int	j;
+	int	last;
+
+	i = 0;
+	while (map[i])
+		i++;
+	last = i - 1;
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (i == 0 || i == last)
+			{
+				if (map[i][j] != '1' && map[i][j] != ' ')
+					return (printf("Error.\nMap is invalid.\n"), 0);
+			}
+			else
+			{
+				if (j == 0 || j == (ft_strlen(map[i]) - 1))
+				{
+					if (map[i][j] != '1' && map[i][j] != ' ')
+						return (printf("Error.\nMap is invalid.\n"), 0);
+				}
+				else
+				{
+					if (map[i][j] != '1' && map[i][j] != ' ')
+					{
+						if (j > (ft_strlen(map[i + 1]) - 1) || j > (ft_strlen(map[i - 1]) - 1))
+							return (printf("Error.\nMap is invalid.\n"), 0);
+						if (map[i - 1][j] == ' ' || map[i + 1][j] == ' ' || map[i][j - 1] == ' ' || map[i][j + 1] == ' ')
+							return (printf("Error.\nMap is invalid.\n"), 0);
+					}
+				}
+			}
+			j++;
+		}
+		i++;
+	}
 	return (1);
 }
 
@@ -237,6 +289,7 @@ int	read_map(t_map *map, char *path)
 			if (!colors || !colors[0] || !colors[1] || !colors[2])
 			{
 				ft_array_free(aux);
+				ft_array_free(colors);
 				free(line);
 				return (printf("Error.\nColor F doesn't exist.\n"), 0);
 			}
@@ -250,6 +303,7 @@ int	read_map(t_map *map, char *path)
 			if (aux[1] == NULL || map->C[0] != -1)
 			{
 				ft_array_free(aux);
+				ft_array_free(colors);
 				free(line);
 				return (printf("Error.\nColor C bad set.\n"), 0);
 			}
@@ -278,6 +332,8 @@ int	read_map(t_map *map, char *path)
 		line = get_next_line(map->fd);
 	}
 	if (!get_map(map))
+		exit(0);
+	if (!valid_map(map->map))
 		exit(0);
 	return (1);
 }

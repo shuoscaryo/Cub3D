@@ -36,7 +36,13 @@ else ifeq ($(UNAME_S),Darwin)
 endif
 
 # Source files without SRC_DIR
-SRC := t_walls/wall_init.c\
+SRC := t_img/img_pixel_put.c\
+	t_img/img_free.c\
+	t_img/img_get_pixel.c\
+	t_img/img_new.c\
+	t_img/img_new2.c\
+	t_img/img_cmp.c\
+	t_walls/wall_init.c\
 	t_walls/walls_get_hash.c\
 	t_walls/walls_free.c\
 	t_walls/wall_cmp.c\
@@ -48,11 +54,6 @@ SRC := t_walls/wall_init.c\
 	t_keys/keys_get_status.c\
 	t_keys/keys_free.c\
 	t_keys/keys_init.c\
-	t_textures/t_img/img_pixel_put.c\
-	t_textures/t_img/img_free.c\
-	t_textures/t_img/img_get_pixel.c\
-	t_textures/t_img/img_new.c\
-	t_textures/t_img/img_cmp.c\
 	t_textures/textures_add_texture.c\
 	t_textures/textures_get_texture.c\
 	t_textures/textures_free.c\

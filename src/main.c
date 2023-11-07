@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/07 20:50:07 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/07 20:55:49 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 	player_init(&game.player, 0, 0, 0);
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
-	game.img = new_img2(game.mlx, WIN_WIDTH, WIN_HEIGHT);
+	game.img = img_new2(game.mlx, WIN_WIDTH, WIN_HEIGHT);
 	mlx_hook(game.win, ON_DESTROY, NO_EVENT_MASK, game_exit, &game);
 	mlx_hook(game.win, ON_KEYDOWN, KEY_PRESS_MASK, on_key_down, &game);
 	mlx_hook(game.win, ON_KEYUP, KEY_RELEASE_MASK, on_key_up, &game);

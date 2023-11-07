@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 22:11:53 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/04 19:07:34 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/07 21:17:55 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ enum {
 };
 
 # define PLAYER_SIZE 0.2f
-# define PLAYER_MOVE_SPEED 1.0f
-# define PLAYER_ROT_SPEED 0.1f
+# define PLAYER_MOVE_SPEED 500.0f
+# define PLAYER_ROT_SPEED 10.0f
 
 # define PI 3.14159265359
 #endif

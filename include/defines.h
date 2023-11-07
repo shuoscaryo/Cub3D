@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 22:11:53 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/04 19:07:34 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/06 23:04:43 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,7 @@ enum {
 # define PLAYER_ROT_SPEED 0.1f
 
 # define PI 3.14159265359
+# define FOV 120
+# define RENDER_DISTANCE 20
+
 #endif

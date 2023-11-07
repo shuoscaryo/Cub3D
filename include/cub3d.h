@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:18:14 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/05 20:47:29 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/07 20:53:11 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "t_player.h"
 # include "t_textures.h"
 # include "t_map.h"
+# include "t_img.h"
 
 typedef struct s_game {
 	void		*mlx;
@@ -35,11 +36,13 @@ typedef struct s_game {
 	t_keys		keys;
 	t_player	player;
 	t_textures	textures;
+	t_img		*img;
 }	t_game;
 
 int		on_key_up(int key, t_game *game);
 int		on_key_down(int key, t_game *game);
 int		check_params(int argc, char **argv, t_game *game);
 int		game_exit(t_game *game);
+int dibuja(t_game *game);
 
 #endif

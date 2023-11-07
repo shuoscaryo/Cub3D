@@ -21,8 +21,8 @@ void	player_on_key(t_player *this, t_keys *keys)
 	float	aux;
 
 	front_mov = keys->get_status(keys, W) - keys->get_status(keys, S);
-	side_mov = keys->get_status(keys, D) - keys->get_status(keys, A);
-	rot_mov = keys->get_status(keys, LEFT) - keys->get_status(keys, RIGHT);
+	side_mov = keys->get_status(keys, A) - keys->get_status(keys, D);
+	rot_mov = keys->get_status(keys, RIGHT) - keys->get_status(keys, LEFT);
 	if (front_mov && side_mov)
 		aux = 0.70710678118;
 	else

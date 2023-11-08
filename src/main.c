@@ -6,16 +6,19 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/07 21:44:05 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/08 17:07:59 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+
+void fps();
 int update(t_game *game)
 {
-	game->player.move(&game->player, 0.01);
-	printf("x: %f, y: %f, angle: %f\n", game->player.x, game->player.y, game->player.rotation);
+	fps();
+	game->player.move(&game->player, 0.1);
+	//printf("x: %f, y: %f, angle: %f\n", game->player.x, game->player.y, game->player.rotation);
 	dibuja(game);
 	return (0);
 }

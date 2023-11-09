@@ -11,7 +11,7 @@ typedef struct s_ray
 	float	delta_z;
 }	t_ray;
 
-static float	move_next_point(t_ray *ray, char **map)
+/*static float	move_next_point(t_ray *ray, char **map)
 {
 	float	tx;
 	float	ty;
@@ -90,3 +90,4 @@ t_img *render(t_game *game , t_img *img)
 	}
 	return (img);
 }
+*/

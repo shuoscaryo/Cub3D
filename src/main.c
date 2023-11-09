@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/09 12:04:15 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/09 14:54:29 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int update(t_game *game)
 	//fps();
 	game->player.move(&game->player, game, 0.1);
 	//printf("x: %f, y: %f, angle: %f\n", game->player.x, game->player.y, game->player.rotation);
+	render(game, game->img);
 	dibuja(game);
 	return (0);
 }

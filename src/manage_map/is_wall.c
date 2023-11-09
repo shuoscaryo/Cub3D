@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_init.c                                      :+:      :+:    :+:   */
+/*   is_wall.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 21:38:13 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/09 13:58:09 by iortega-         ###   ########.fr       */
+/*   Created: 2023/11/09 13:46:35 by iortega-          #+#    #+#             */
+/*   Updated: 2023/11/09 13:46:54 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_player.h"
-#include "defines.h"
+#include "cub3d.h"
 
-void	player_init(t_player *player, float x, float y, float rotation)
+int	ft_array_len(char **str)
 {
-	player->x = x;
-	player->y = y;
-	player->z = PLAYER_HEIGHT;
-	player->rotation = rotation;
-	player->v_front = 0;
-	player->v_side = 0;
-	player->v_rotation = 0;
-	player->size = PLAYER_SIZE;
-	player->move = player_move;
-	player->on_key = player_on_key;
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+int	is_wall(char **map, int x, int y)
+{
+	//printf("x: %d, y: %d\n", x, y);
+	if (x < 0 || y < 0)
+		return (1);
+	if (y >= ft_array_len(map) || x >= (int)ft_strlen(map[y]))
+		return (1);
+	return (map[y][x] == '1');
 }

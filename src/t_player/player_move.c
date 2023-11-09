@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:44:16 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/09 11:59:19 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/09 12:28:03 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_array_len(char **str)
 
 int	is_wall(char **map, int x, int y)
 {
-	printf("x: %d, y: %d\n", x, y);
+	//printf("x: %d, y: %d\n", x, y);
 	if (x < 0 || y < 0)
 		return (1);
 	if (y >= ft_array_len(map) || x >= (int)ft_strlen(map[y]))
@@ -59,11 +59,11 @@ void	player_move(t_player *this, t_game *game, float delta_time)
 	this->rotation += this->v_rotation * delta_time;
 	adjust_rotation(&this->rotation);
 	if (is_wall(game->map.map, (int)(x + this->size * ((vx > 0) - (vx < 0))), y))
-		this->x = (int)(x + this->size * ((vx > 0) - (vx < 0))) + (vx < 0);
+		this->x = (int)(x + this->size * ((vx > 0) - (vx < 0))) + (vx < 0) + this->size * ((vx < 0) - (vx > 0));
 	else
 		this->x = x;
-	if (is_wall(game->map.map, x, (int)(y + this->size * ((vy > 0) - (vy < 0)))))
-		this->y = (int)(y + this->size * ((vy > 0) - (vy < 0))) + (vy < 0);
+	if (is_wall(game->map.map, x, (int)(y + this->size * ((vy < 0) - (vy > 0)))))
+		this->y = (int)(y + this->size * ((vy < 0) - (vy > 0))) + (vy > 0) + this->size * ((vy > 0) - (vy < 0));
 	else
 		this->y = y;
 }

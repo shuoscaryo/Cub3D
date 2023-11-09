@@ -76,6 +76,6 @@ int dibuja(t_game *game)
 	}
 	dibu_player(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
-	printf("x: %f, y: %f, angle: %f\n", game->player.x, game->player.y, game->player.rotation);
+	//printf("x: %f, y: %f, angle: %f\n", game->player.x, game->player.y, game->player.rotation);
 	return (0);
 }

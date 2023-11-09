@@ -11,11 +11,6 @@ typedef struct s_ray
 	float	delta_z;
 }	t_ray;
 
-int	collision(t_game *game, t_ray *ray)
-{
-	return (0);
-}
-
 static float	move_next_point(t_ray *ray, char **map)
 {
 	float	tx;
@@ -32,12 +27,22 @@ static float	move_next_point(t_ray *ray, char **map)
 	if (tx > ty) // if time to right grid is bigger than time to up grid
 	{
 		tx = ty;
+		//if (is_wall(map, (int)ray->x, (int)ray->y))
+			//return (tx);
+	}
+	else
+	{
 		if (is_wall(map, (int)ray->x, (int)ray->y))
+		{
+			printf("MURO\n");
+			printf("x: %f, y: %f\n", ray->x, ray->y);
 			return (tx);
+		}
 	}
 	ray->x += ray->delta_x * tx;
 	ray->y += ray->delta_y * tx;
 	ray->z += ray->delta_z * tx;
+	map++;
 	return (tx);
 }
 
@@ -53,8 +58,6 @@ static int	get_pixel(t_game *game, t_ray *ray)
 			return (game->map.F[0] << 16 | game->map.F[1] << 8 | game->map.F[2]);
 		if (ray->z < 0)
 			return (game->map.C[0] << 16 | game->map.C[1] << 8 | game->map.C[2]);
-		if (collision(game, ray))
-			return ();
 		t += move_next_point(ray, game->map.map);
 	}
 	if (ray->z < game->player.z)

@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 16:33:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/08 20:28:47 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/09 13:47:01 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ void	delete_n(char *line);
 int		valid_map(char **map);
 void	init_var(t_map *map);
 void	set_player(t_map *map);
+int		is_wall(char **map, int x, int y);
 
 #endif

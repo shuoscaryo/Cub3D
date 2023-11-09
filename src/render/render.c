@@ -3,21 +3,20 @@
 
 typedef struct s_ray
 {
-	int	x;
-	int	y;
-	int	z;
-	int	delta_x;
-	int	delta_y;
-	int	delta_z;
+	float	x;
+	float	y;
+	float	z;
+	float	delta_x;
+	float	delta_y;
+	float	delta_z;
 }	t_ray;
 
-int	collision(t_wall wall, t_ray *ray)
+int	collision(t_game *game, t_ray *ray)
 {
-	int		x; //coordinates of the img, starts from the left top corner positive to the right
-	int		y; //coordinates of the img, starts from the left top corner positive to the bottom
+	return (0);
 }
 
-static float	move_next_point(t_ray *ray)
+static float	move_next_point(t_ray *ray, char **map)
 {
 	float	tx;
 	float	ty;
@@ -31,7 +30,11 @@ static float	move_next_point(t_ray *ray)
 	else
 		ty = ((int)ray->y - ray->y) / ray->delta_y; //calculate time to down grid
 	if (tx > ty) // if time to right grid is bigger than time to up grid
+	{
 		tx = ty;
+		if (is_wall(map, (int)ray->x, (int)ray->y))
+			return (tx);
+	}
 	ray->x += ray->delta_x * tx;
 	ray->y += ray->delta_y * tx;
 	ray->z += ray->delta_z * tx;
@@ -41,23 +44,22 @@ static float	move_next_point(t_ray *ray)
 static int	get_pixel(t_game *game, t_ray *ray)
 {
 	int		t;
-	t_wall	wall;
 
 	t = 0;
+	t += move_next_point(ray, game->map.map);
 	while (t < RENDER_DISTANCE)
 	{
 		if (ray->z > 1)
-			return (game->maps.F[0] << 16 | game->maps.F[1] << 8 | game->maps.F[2]);
+			return (game->map.F[0] << 16 | game->map.F[1] << 8 | game->map.F[2]);
 		if (ray->z < 0)
-			return (game->maps.C[0] << 16 | game->maps.C[1] << 8 | game->maps.C[2]);
-		wall = get_next_tile(game, ray);
-		if (wall)
-			return (colision(wall, ray));
-		t += move_next_point(ray);
+			return (game->map.C[0] << 16 | game->map.C[1] << 8 | game->map.C[2]);
+		if (collision(game, ray))
+			return ();
+		t += move_next_point(ray, game->map.map);
 	}
-	if (ray->z < player->z)
-		return (game->maps.F[0] << 16 | game->maps.F[1] << 8 | game->maps.F[2]);
-	return (game->maps.C[0] << 16 | game->maps.C[1] << 8 | game->maps.C[2]);
+	if (ray->z < game->player.z)
+		return (game->map.F[0] << 16 | game->map.F[1] << 8 | game->map.F[2]);
+	return (game->map.C[0] << 16 | game->map.C[1] << 8 | game->map.C[2]);
 }
 
 t_img *render(t_game *game , t_img *img)
@@ -76,15 +78,15 @@ t_img *render(t_game *game , t_img *img)
 		y = -1;
 		while (++y < img->height)
 		{
-			alpha = game->player.rotation + tan((img->weight - x) / ray->frame_dist);
-			beta = tan((img->height - y) / ray->frame_dist);
-			ray->x = game->player.x;
-			ray->y = game->player.y;
-			ray->z = game->player.z;
-			ray->delta_x = cos(beta) * cos(alpha);
-			ray->delta_y = cos(beta) * sin(alpha);
-			ray->delta_z = sin(beta);
-			my_mlx_pixel_put(&game->img, x, y, get_pixel(game, ray));
+			alpha = game->player.rotation + tan((img->width - x) / frame_dist);
+			beta = tan((img->height - y) / frame_dist);
+			ray.x = game->player.x;
+			ray.y = game->player.y;
+			ray.z = game->player.z;
+			ray.delta_x = cos(beta) * cos(alpha);
+			ray.delta_y = cos(beta) * sin(alpha);
+			ray.delta_z = sin(beta);
+			img->put_pixel(img, x, y, get_pixel(game, &ray));
 		}
 	}
 	return (img);

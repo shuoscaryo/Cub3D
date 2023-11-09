@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 19:24:20 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/09 11:56:24 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/09 13:57:36 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_player
 {
 	float	x;
 	float	y;
+	float	z;
 	float	rotation;
 	float	v_front;
 	float	v_side;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/08 17:07:59 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/09 12:04:15 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 void fps();
 int update(t_game *game)
 {
-	fps();
-	game->player.move(&game->player, 0.1);
+	//fps();
+	game->player.move(&game->player, game, 0.1);
 	//printf("x: %f, y: %f, angle: %f\n", game->player.x, game->player.y, game->player.rotation);
 	dibuja(game);
 	return (0);
@@ -33,15 +33,15 @@ int	main(int argc, char **argv)
 		return (free_map(&game.map), 0);
 	//game_init(&game);
 	keys_init(&game.keys);
-	player_init(&game.player, 0, 14, 14);
+	player_init(&game.player, game.map.x + 0.5, game.map.y + 0.5, game.map.rotation);
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
 	game.img = img_new2(game.mlx, WIN_WIDTH, WIN_HEIGHT);
 	mlx_hook(game.win, ON_DESTROY, NO_EVENT_MASK, game_exit, &game);
+	mlx_loop_hook(game.mlx, update, &game);
 	mlx_hook(game.win, ON_KEYDOWN, KEY_PRESS_MASK, on_key_down, &game);
 	mlx_hook(game.win, ON_KEYUP, KEY_RELEASE_MASK, on_key_up, &game);
 	mlx_do_key_autorepeatoff(game.mlx);
-	mlx_loop_hook(game.mlx, update, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

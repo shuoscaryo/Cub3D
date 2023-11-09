@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_map.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 16:33:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/05 20:49:58 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/08 20:28:47 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ typedef struct s_map {
 	char	**map;
 	int		F[3];
 	int		C[3];
+	int		x;
+	int		y;
+	float	rotation;
 	char	*NO;
 	char	*SO;
 	char	*WE;
@@ -33,5 +36,6 @@ int		parse_line(char *str, int *player);
 void	delete_n(char *line);
 int		valid_map(char **map);
 void	init_var(t_map *map);
+void	set_player(t_map *map);
 
 #endif

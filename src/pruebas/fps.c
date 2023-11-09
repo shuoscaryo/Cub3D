@@ -1,4 +1,6 @@
 #include "sys/time.h"
+#include <stddef.h>
+
 unsigned long	millis(void)
 {
 	struct timeval	time;

@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 18:29:49 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/05 18:31:01 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/08 20:28:32 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,6 @@ int	get_map(t_map *map)
 		return (0);
 	if (!save_map(map, &list))
 		return (0);
+	set_player(map);
 	return (1);
 }

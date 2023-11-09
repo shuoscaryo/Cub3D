@@ -28,10 +28,11 @@ int cuadro(t_game *game, int x, int y, int color)
 }
 void flechita(t_game *game, int x, int y, int color)
 {
+	//printf("x: %d, y: %d, angle: %f\n", x, y, game->player.rotation);
 	for (int i = 0; i < cuadrado_lado * 3; i++)
 	{
 		float x1 =x +i* cos(game->player.rotation);
-		float y1 =y +i* sin(game->player.rotation);
+		float y1 =y -i* sin(game->player.rotation);
 		my_pixel(game->img,x1 ,y1 , color);
 		my_pixel(game->img,x1 + 1 , y1 , color);
 		my_pixel(game->img,x1 - 1 ,y1 , color);
@@ -47,8 +48,8 @@ void flechita(t_game *game, int x, int y, int color)
 
 void dibu_player(t_game *game)
 {
-	cuadro(game, game->player.x * cuadrado_lado, game->player.y * cuadrado_lado, 0x000000FF);
-	flechita(game, (game->player.x + 0.5)* cuadrado_lado, (game->player.y + 0.5) * cuadrado_lado, 0x000000FF);
+	cuadro(game, (game->player.x - 0.5) * cuadrado_lado, (game->player.y - 0.5) * cuadrado_lado, 0x000000FF);
+	flechita(game, (game->player.x)* cuadrado_lado, (game->player.y) * cuadrado_lado, 0x000000FF);
 	//game->img->put_pixel(game->img, game->player.x * cuadrado_lado, game->player.y * cuadrado_lado, 0x000000FF);
 }
 
@@ -75,5 +76,6 @@ int dibuja(t_game *game)
 	}
 	dibu_player(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
+	printf("x: %d, y: %d, angle: %f\n", (int)ceil(game->player.x), (int)ceil(game->player.y), game->player.rotation);
 	return (0);
 }

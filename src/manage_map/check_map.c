@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 18:39:34 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/05 18:45:02 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/08 20:31:35 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,35 @@ int	valid_map(char **map)
 		i++;
 	}
 	return (1);
+}
+
+void set_player(t_map *map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (map->map[i])
+	{
+		j = 0;
+		while(map->map[i][j])
+		{
+			if (ft_strchr("NSEW", map->map[i][j]))
+			{
+				map->x = j + 0.5;
+				map->y = i + 0.5;
+				if (map->map[i][j] == 'N')
+					map->rotation = PI / 2;
+				if (map->map[i][j] == 'S')
+					map->rotation = -PI / 2;
+				if (map->map[i][j] == 'E')
+					map->rotation = 0;
+				if (map->map[i][j] == 'W')
+					map->rotation = PI;
+				map->map[i][j] = '0';
+			}
+			j++;
+		}
+		i++;
+	}
 }

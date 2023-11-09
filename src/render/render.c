@@ -26,7 +26,7 @@ static float	move_next_point(t_ray *ray, int *new_x, int *new_y)
 		(*new_y)--;
 	if (ray->delta_x < 0)
 		(*new_x)--;
-	if (tx > ty) // if time to right grid is bigger than time to up grid
+	if (tx > ty && ty > 0) // if time to right grid is bigger than time to up grid
 	{
 		*new_x = (int)ray->x;
 		tx = ty;
@@ -52,7 +52,7 @@ static float	move_first_point(t_ray *ray, int *new_x, int *new_y)
 		(*new_y)--;
 	if (ray->delta_x < 0)
 		(*new_x)--;
-	if (tx > ty) // if time to right grid is bigger than time to up grid
+	if (tx > ty && ty > 0) // if time to right grid is bigger than time to up grid
 	{
 		*new_x = (int)ray->x;
 		tx = ty;
@@ -65,24 +65,39 @@ static float	move_first_point(t_ray *ray, int *new_x, int *new_y)
 	return (tx);
 }
 
-void rayo(t_game *game, int x, int y, int color)
+void rayo(t_img *img, int x0, int y0, int x1, int y1, int color)
 {
-	//printf("x: %d, y: %d, angle: %f\n", x, y, game->player.rotation);
-	for (int i = 0; i < cuadrado_lado * 5 * game->player.size; i++)
+	int dx = abs(x1 - x0);
+	int dy = abs(y1 - y0);
+	int sx = x0 < x1 ? 1 : -1;
+	int sy = y0 < y1 ? 1 : -1;
+	if (dx > dy)
 	{
-		float x1 =x +i* cos(game->player.rotation);
-		float y1 =y -i* sin(game->player.rotation);
-		game->img->put_pixel(game->img, x1, y1, color);
-		game->img->put_pixel(game->img, x1 + 1, y1, color);
-		game->img->put_pixel(game->img, x1 - 1, y1, color);
-		game->img->put_pixel(game->img, x1, y1 + 1, color);
-		game->img->put_pixel(game->img, x1, y1 - 1, color);
-		game->img->put_pixel(game->img, x1 + 1, y1 + 1, color);
-		game->img->put_pixel(game->img, x1 - 1, y1 + 1, color);
-		game->img->put_pixel(game->img, x1 + 1, y1 - 1, color);
-		game->img->put_pixel(game->img, x1 - 1, y1 - 1, color);
-
+		for (int i = 0; i < dx; i ++)
+		{
+			int x = x0 + i * sx;
+			int y = y0 + (y1 - y0) * i * sx / (float)dx;
+			img->put_pixel(img, x, y, color);
+		}
 	}
+	else
+	{
+		for (int i = 0; i < dy; i ++)
+		{
+			int x = x0 + (x1 - x0) * i * sy / (float)dy;
+			int y = y0 + i * sy;
+			img->put_pixel(img, x, y, color);
+		}
+	}
+	/*float angle= atan((y1 - y0) / (x1 -x0));
+	float deltay = sin(angle);
+	float deltax = cos(angle);
+	for (int i = 0; i < 5 * cuadrado_lado; i ++)
+	{
+		float x1 =x0 + i* deltax;
+		float y1 =y0 + i* deltay;
+		img->put_pixel(img, x1, y1, color);
+	}*/
 }
 
 static int	get_pixel(t_game *game, t_ray *ray, char **map)
@@ -102,7 +117,7 @@ static int	get_pixel(t_game *game, t_ray *ray, char **map)
 		if (is_wall(map, new_x, new_y))
 		{
 			//printf("x: %d, y: %d\n", new_x, new_y);
-			rayo(game, ray->x * cuadrado_lado, ray->y * cuadrado_lado, 0x000000FF);
+			rayo(game->img, game->player.x * cuadrado_lado, game->player.y * cuadrado_lado, ray->x * cuadrado_lado, ray->y * cuadrado_lado, 0x000000FF);
 			//exit(1);
 			return (0x00FFFFFF);
 		}
@@ -115,32 +130,32 @@ static int	get_pixel(t_game *game, t_ray *ray, char **map)
 
 t_img *render(t_game *game , t_img *img, char **map)
 {
-	//int x;
+	int x;
 	//int y;
 	t_ray ray;
 	float	alpha;
 	float	beta;
-	//int frame_dist;
-
-	//x = -1;
-	//frame_dist = img->width / ( 2.0f * tan(FOV * PI / 360.0f));
-	/*while (++x < img->width)
+	float frame_dist;
+	rayo (img, 0, 0, game->player.x * cuadrado_lado, game->player.y *cuadrado_lado, 0x0055aa55);
+	x = -1;
+	frame_dist = img->width / ( 2.0f * tan(FOV * PI / 360.0f));
+	while (++x < img->width)
 	{
-		y = -1;
-		while (++y < img->height)
-		{
-			alpha = game->player.rotation + tan((img->width - x) / frame_dist); //NOTE UPDATE WITH NEW COORDINATES
-			beta = tan((img->height - y) / frame_dist); //NOTE UPDATE WITH NEW COORDINATES
+		//y = -1;
+		//while (++y < img->height)
+		//{
+			alpha = game->player.rotation + atan2(img->width/2 - x, frame_dist); //NOTE UPDATE WITH NEW COORDINATES
+			beta = 0;//tan((img->height - y) / frame_dist); //NOTE UPDATE WITH NEW COORDINATES
 			ray.x = game->player.x;
 			ray.y = game->player.y;
 			ray.z = game->player.z;
 			ray.delta_x = cos(beta) * cos(alpha); //NOTE UPDATE WITH NEW COORDINATES
-			ray.delta_y = cos(beta) * sin(alpha); //NOTE UPDATE WITH NEW COORDINATES
+			ray.delta_y = - cos(beta) * sin(alpha); //NOTE UPDATE WITH NEW COORDINATES
 			ray.delta_z = sin(beta); //NOTE UPDATE WITH NEW COORDINATES
-			img->put_pixel(img, x, y, get_pixel(game, &ray, map));
-		}
-	}*/
-	alpha = - game->player.rotation; //NOTE UPDATE WITH NEW COORDINATES
+			img->put_pixel(img, x, 0, get_pixel(game, &ray, map));
+		//}
+	}
+	/* alpha = - game->player.rotation; //NOTE UPDATE WITH NEW COORDINATES
 	beta = 0; //NOTE UPDATE WITH NEW COORDINATES
 	ray.x = game->player.x;
 	ray.y = game->player.y;
@@ -149,6 +164,6 @@ t_img *render(t_game *game , t_img *img, char **map)
 	ray.delta_y = cos(beta) * sin(alpha); //NOTE UPDATE WITH NEW COORDINATES
 	ray.delta_z = sin(beta); //NOTE UPDATE WITH NEW COORDINATES
 	printf("x: %f, y: %f, z: %f alpha: %f\n", ray.delta_x, ray.delta_y, ray.delta_z, alpha);
-	img->put_pixel(img, 0, 0, get_pixel(game, &ray, map));
+	img->put_pixel(img, 0, 0, get_pixel(game, &ray, map)); */
 	return (img);
 }

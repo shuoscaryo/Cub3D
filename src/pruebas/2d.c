@@ -48,8 +48,8 @@ void flechita(t_game *game, int x, int y, int color)
 
 void dibu_player(t_game *game)
 {
-	cuadro(game->img, (game->player.x - game->player.size) * cuadrado_lado, (game->player.y - game->player.size) * cuadrado_lado, 0x000000FF,game->player.size * 2 * cuadrado_lado);
-	flechita(game, (game->player.x)* cuadrado_lado, (game->player.y) * cuadrado_lado, 0x000000FF);
+	cuadro(game->img, (game->player.x - game->player.size) * cuadrado_lado, (game->player.y - game->player.size) * cuadrado_lado, 0x0099FF99,game->player.size * 2 * cuadrado_lado);
+	flechita(game, (game->player.x)* cuadrado_lado, (game->player.y) * cuadrado_lado, 0x00bbffbb);
 	//game->img->put_pixel(game->img, game->player.x * cuadrado_lado, game->player.y * cuadrado_lado, 0x000000FF);
 }
 

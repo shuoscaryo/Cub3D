@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 22:11:53 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/09 15:33:52 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/09 20:46:08 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ enum {
 	KEY_RELEASE_MASK = (1L<<1)
 };
 
-# define PLAYER_SIZE 0.4f
-# define PLAYER_MOVE_SPEED 0.5f
-# define PLAYER_ROT_SPEED 0.5f
+# define PLAYER_SIZE 0.2f
+# define PLAYER_MOVE_SPEED 0.2f
+# define PLAYER_ROT_SPEED 0.2f
 # define PLAYER_HEIGHT 0.5f
 
 # define PI 3.14159265359

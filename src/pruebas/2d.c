@@ -14,10 +14,10 @@ int cuadro(t_img *img, int x, int y, int color, int size)
 	int i;
 	int j;
 	i = 0;
-	while (i < size)
+	while (i < size - 1)
 	{
 		j = 0;
-		while (j < size)
+		while (j < size - 1)
 		{
 			my_pixel(img, x + i, y + j, color);
 			j++;
@@ -75,7 +75,6 @@ int dibuja(t_game *game)
 		i++;
 	}
 	dibu_player(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
 	//printf("x: %f, y: %f, angle: %f\n", game->player.x, game->player.y, game->player.rotation);
 	return (0);
 }

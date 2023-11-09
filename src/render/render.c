@@ -17,19 +17,15 @@ int	collision(t_wall wall, t_ray *ray)
 	int		y; //coordinates of the img, starts from the left top corner positive to the bottom
 }
 
-static float	move_next_point(t_ray *ray)
+static float	move_next_point(t_ray *ray , int *new_x, int *new_i)
 {
 	float	tx;
 	float	ty;
 
-	if (ray->delta_x > 0) // if ray is going right
-		tx = ((int)ray->x + 1 - ray->x) / ray->delta_x; //calculate time to right grid
-	else
-		tx = ((int)ray->x - ray->x) / ray->delta_x; //calculate time to left grid
-	if (ray->delta_y > 0) // if ray is going up
-		ty = ((int)ray->y + 1 - ray->y) / ray->delta_y; //calculate time to up grid
-	else
-		ty = ((int)ray->y - ray->y) / ray->delta_y; //calculate time to down grid
+	*new_x = (int)ray->x + (ray->delta_x > 0 ) - (ray->delta_x < 0 );
+		tx = (*new_x - ray->x) / ray->delta_x; //calculate time to right grid
+	*new_y = (int)ray->y + (ray->delta_y > 0 );
+		ty = (*new_y - ray->y) / ray->delta_y; //calculate time to up grid
 	if (tx > ty) // if time to right grid is bigger than time to up grid
 		tx = ty;
 	ray->x += ray->delta_x * tx;

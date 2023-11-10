@@ -14,7 +14,7 @@ typedef struct s_ray
 }	t_ray;
 
 t_img *g_img;
-
+int g_x;
 static float	move_next_point(t_ray *ray, int *new_x, int *new_y)
 {
 	float	tx;
@@ -38,7 +38,7 @@ static float	move_next_point(t_ray *ray, int *new_x, int *new_y)
 	ray->x += ray->delta_x * tx;
 	ray->y += ray->delta_y * tx;
 	ray->z += ray->delta_z * tx;
-	g_img->put_pixel(g_img, ray->x * cuadrado_lado , ray->y * cuadrado_lado, 0x00ff00ff);
+	g_img->put_pixel(g_img, ray->x * cuadrado_lado , ray->y * cuadrado_lado, 0x00aaffaa);
 	return (tx);
 }
 
@@ -65,7 +65,7 @@ static float	move_first_point(t_ray *ray, int *new_x, int *new_y)
 	ray->x += ray->delta_x * tx;
 	ray->y += ray->delta_y * tx;
 	ray->z += ray->delta_z * tx;
-	g_img->put_pixel(g_img, ray->x * cuadrado_lado , ray->y * cuadrado_lado, 0x00ff00ff);
+	g_img->put_pixel(g_img, ray->x * cuadrado_lado , ray->y * cuadrado_lado, 0x00aaffaa);
 	return (tx);
 }
 
@@ -111,13 +111,13 @@ static int	get_pixel(t_game *game, t_ray *ray, char **map)
 		if (is_wall(map, new_x, new_y))
 		{
 			//printf("x: %d, y: %d\n", new_x, new_y);
-			rayo(game->img, game->player.x * cuadrado_lado, game->player.y * cuadrado_lado, ray->x * cuadrado_lado, ray->y * cuadrado_lado, 0xd50000FF);
+			rayo(game->img, game->player.x * cuadrado_lado, game->player.y * cuadrado_lado, ray->x * cuadrado_lado, ray->y * cuadrado_lado, 0xdd0000FF | ((int)((float)g_x /WIN_WIDTH * (1 << 8) - 1 )<< 8));
 			//exit(1);
 			return (0x000000ff);
 		}
 		t += move_next_point(ray, &new_x, &new_y);
 	}
-	rayo(game->img, game->player.x * cuadrado_lado, game->player.y * cuadrado_lado, ray->x * cuadrado_lado, ray->y * cuadrado_lado, 0xf50000FF);
+	rayo(game->img, game->player.x * cuadrado_lado, game->player.y * cuadrado_lado, ray->x * cuadrado_lado, ray->y * cuadrado_lado, 0xdd0000FF | ((int)((float)g_x /WIN_WIDTH * (1 << 8) - 1 )<< 8));
 	if (ray->z < game->player.z)
 		return (game->map.F[0] << 16 | game->map.F[1] << 8 | game->map.F[2]);
 	return (game->map.C[0] << 16 | game->map.C[1] << 8 | game->map.C[2]);
@@ -140,7 +140,8 @@ t_img *render(t_game *game , t_img *img, char **map)
 		//while (++y < img->height)
 		//{
 			//alpha = game->player.rotation + atan2(img->width/2 - x, frame_dist); //NOTE UPDATE WITH NEW COORDINATES
-			alpha = game->player.rotation + (FOV/2.0 - (float)x * FOV / img->width) * PI / 180; 
+			alpha = game->player.rotation + (-FOV/2.0 + (float)x * FOV / img->width) * PI / 180; 
+			g_x = x;
 			beta = 0;//tan((img->height - y) / frame_dist); //NOTE UPDATE WITH NEW COORDINATES
 			ray.x = game->player.x;
 			ray.y = game->player.y;
@@ -152,15 +153,5 @@ t_img *render(t_game *game , t_img *img, char **map)
 			//img->put_pixel(img, x, y, get_pixel(game, &ray, map));
 		//}
 	}
-	/* alpha = - game->player.rotation; //NOTE UPDATE WITH NEW COORDINATES
-	beta = 0; //NOTE UPDATE WITH NEW COORDINATES
-	ray.x = game->player.x;
-	ray.y = game->player.y;
-	ray.z = game->player.z;
-	ray.delta_x = cos(beta) * cos(alpha); //NOTE UPDATE WITH NEW COORDINATES
-	ray.delta_y = cos(beta) * sin(alpha); //NOTE UPDATE WITH NEW COORDINATES
-	ray.delta_z = sin(beta); //NOTE UPDATE WITH NEW COORDINATES
-	printf("x: %f, y: %f, z: %f alpha: %f\n", ray.delta_x, ray.delta_y, ray.delta_z, alpha);
-	img->put_pixel(img, 0, 0, get_pixel(game, &ray, map)); */
 	return (img);
 }

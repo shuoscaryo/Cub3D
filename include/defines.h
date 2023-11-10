@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 22:11:53 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/10 13:36:37 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/10 20:19:55 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ enum {
 # define PLAYER_HEIGHT 0.5f
 
 # define PI 3.14159265359
-# define FOV 60
+# define FOV 360
 # define RENDER_DISTANCE 20
 
 #endif

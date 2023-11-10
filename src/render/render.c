@@ -13,6 +13,8 @@ typedef struct s_ray
 	float	delta_z;
 }	t_ray;
 
+t_img *g_img;
+
 static float	move_next_point(t_ray *ray, int *new_x, int *new_y)
 {
 	float	tx;
@@ -36,6 +38,7 @@ static float	move_next_point(t_ray *ray, int *new_x, int *new_y)
 	ray->x += ray->delta_x * tx;
 	ray->y += ray->delta_y * tx;
 	ray->z += ray->delta_z * tx;
+	g_img->put_pixel(g_img, ray->x * cuadrado_lado , ray->y * cuadrado_lado, 0x00ff00ff);
 	return (tx);
 }
 
@@ -62,6 +65,7 @@ static float	move_first_point(t_ray *ray, int *new_x, int *new_y)
 	ray->x += ray->delta_x * tx;
 	ray->y += ray->delta_y * tx;
 	ray->z += ray->delta_z * tx;
+	g_img->put_pixel(g_img, ray->x * cuadrado_lado , ray->y * cuadrado_lado, 0x00ff00ff);
 	return (tx);
 }
 
@@ -113,6 +117,7 @@ static int	get_pixel(t_game *game, t_ray *ray, char **map)
 		}
 		t += move_next_point(ray, &new_x, &new_y);
 	}
+	rayo(game->img, game->player.x * cuadrado_lado, game->player.y * cuadrado_lado, ray->x * cuadrado_lado, ray->y * cuadrado_lado, 0xf50000FF);
 	if (ray->z < game->player.z)
 		return (game->map.F[0] << 16 | game->map.F[1] << 8 | game->map.F[2]);
 	return (game->map.C[0] << 16 | game->map.C[1] << 8 | game->map.C[2]);
@@ -120,20 +125,22 @@ static int	get_pixel(t_game *game, t_ray *ray, char **map)
 
 t_img *render(t_game *game , t_img *img, char **map)
 {
+	g_img = img;
 	int x;
 	//int y;
 	t_ray ray;
 	float	alpha;
 	float	beta;
-	float frame_dist;
+//	float frame_dist;
 	x = -1;
-	frame_dist = img->width / ( 2.0f * tan(FOV * PI / 360.0f));
+	//frame_dist = img->width / ( 2.0f * tan(FOV * PI / 360.0f));
 	while (++x < img->width)
 	{
 		//y = -1;
 		//while (++y < img->height)
 		//{
-			alpha = game->player.rotation + atan2(img->width/2 - x, frame_dist); //NOTE UPDATE WITH NEW COORDINATES
+			//alpha = game->player.rotation + atan2(img->width/2 - x, frame_dist); //NOTE UPDATE WITH NEW COORDINATES
+			alpha = game->player.rotation + (FOV/2 - x * FOV / img->width) * PI / 180; 
 			beta = 0;//tan((img->height - y) / frame_dist); //NOTE UPDATE WITH NEW COORDINATES
 			ray.x = game->player.x;
 			ray.y = game->player.y;

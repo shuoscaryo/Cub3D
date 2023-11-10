@@ -32,7 +32,7 @@ void flechita(t_game *game, int x, int y, int color)
 	for (int i = 0; i < cuadrado_lado * 3 * game->player.size; i++)
 	{
 		float x1 =x +i* cos(game->player.rotation);
-		float y1 =y -i* sin(game->player.rotation);
+		float y1 =y +i* sin(game->player.rotation);
 		my_pixel(game->img,x1 ,y1 , color);
 		my_pixel(game->img,x1 + 1 , y1 , color);
 		my_pixel(game->img,x1 - 1 ,y1 , color);

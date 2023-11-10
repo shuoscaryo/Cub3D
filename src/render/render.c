@@ -150,7 +150,7 @@ t_img *render(t_game *game , t_img *img, char **map)
 			ray.y = game->player.y;
 			ray.z = game->player.z;
 			ray.delta_x = cos(beta) * cos(alpha); //NOTE UPDATE WITH NEW COORDINATES
-			ray.delta_y = - cos(beta) * sin(alpha); //NOTE UPDATE WITH NEW COORDINATES
+			ray.delta_y = cos(beta) * sin(alpha); //NOTE UPDATE WITH NEW COORDINATES
 			ray.delta_z = sin(beta); //NOTE UPDATE WITH NEW COORDINATES
 			img->put_pixel(img, x, 0, get_pixel(game, &ray, map));
 		//}

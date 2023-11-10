@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:44:16 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/09 15:59:13 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/10 12:33:29 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	player_move(t_player *this, t_game *game, float delta_time)
 	float vy;
 	
 	vx = this->v_front * cos(this->rotation)
-		+ this->v_side * sin(this->rotation);
-	vy = - this->v_front * sin(this->rotation)
+		- this->v_side * sin(this->rotation);
+	vy = + this->v_front * sin(this->rotation)
 		+ this->v_side * cos(this->rotation);
 	x = this->x + vx * delta_time;
 	y = this->y + vy * delta_time;

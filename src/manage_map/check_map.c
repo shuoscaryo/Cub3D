@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 18:39:34 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/09 21:15:32 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:31:57 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ void set_player(t_map *map)
 				map->x = j + 0.5;
 				map->y = i + 0.5;
 				if (map->map[i][j] == 'N')
-					map->rotation = PI / 2;
+					map->rotation =  -PI / 2;
 				if (map->map[i][j] == 'S')
-					map->rotation = - PI / 2;
+					map->rotation = PI / 2;
 				if (map->map[i][j] == 'E')
 					map->rotation = 0;
 				if (map->map[i][j] == 'W')

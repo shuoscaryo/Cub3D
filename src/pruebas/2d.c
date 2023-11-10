@@ -45,8 +45,8 @@ void flechita(t_game *game, int x, int y, int color)
 
 void dibu_player(t_game *game)
 {
+	flechita(game, (game->player.x)* cuadrado_lado, (game->player.y) * cuadrado_lado, 0x0000aa00);
 	cuadro(game->img, (game->player.x - game->player.size) * cuadrado_lado, (game->player.y - game->player.size) * cuadrado_lado, 0x0099FF99,game->player.size * 2 * cuadrado_lado);
-	flechita(game, (game->player.x)* cuadrado_lado, (game->player.y) * cuadrado_lado, 0x00bbffbb);
 	//game->img->put_pixel(game->img, game->player.x * cuadrado_lado, game->player.y * cuadrado_lado, 0x000000FF);
 }
 
@@ -62,11 +62,9 @@ int dibuja(t_game *game)
 		while(game->map.map[i][j])
 		{
 			if (game->map.map[i][j] == '1')
-				cuadro(game->img, j * cuadrado_lado, i * cuadrado_lado, 0x00FFFFFF, cuadrado_lado);
+				cuadro(game->img, j * cuadrado_lado, i * cuadrado_lado, 0x00eeeeee, cuadrado_lado);
 			else if (game->map.map[i][j] == '0')
-				cuadro(game->img, j * cuadrado_lado, i * cuadrado_lado, 0x00FF0000, cuadrado_lado);
-			else if (game->map.map[i][j] == 'N')
-				cuadro(game->img, j * cuadrado_lado, i * cuadrado_lado, 0x00FF9999, cuadrado_lado);
+				cuadro(game->img, j * cuadrado_lado, i * cuadrado_lado, 0x00dd3333, cuadrado_lado);
 			j++;
 		}
 		i++;

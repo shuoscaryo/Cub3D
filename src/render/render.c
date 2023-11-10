@@ -109,7 +109,7 @@ static int	get_pixel(t_game *game, t_ray *ray, char **map)
 			//printf("x: %d, y: %d\n", new_x, new_y);
 			rayo(game->img, game->player.x * cuadrado_lado, game->player.y * cuadrado_lado, ray->x * cuadrado_lado, ray->y * cuadrado_lado, 0xf50000FF);
 			//exit(1);
-			return (0x00FFFFFF);
+			return (0x000000ff);
 		}
 		t += move_next_point(ray, &new_x, &new_y);
 	}
@@ -141,7 +141,8 @@ t_img *render(t_game *game , t_img *img, char **map)
 			ray.delta_x = cos(beta) * cos(alpha); //NOTE UPDATE WITH NEW COORDINATES
 			ray.delta_y = cos(beta) * sin(alpha); //NOTE UPDATE WITH NEW COORDINATES
 			ray.delta_z = sin(beta); //NOTE UPDATE WITH NEW COORDINATES
-			img->put_pixel(img, x, 0, get_pixel(game, &ray, map));
+			get_pixel(game, &ray, map);
+			//img->put_pixel(img, x, y, get_pixel(game, &ray, map));
 		//}
 	}
 	/* alpha = - game->player.rotation; //NOTE UPDATE WITH NEW COORDINATES

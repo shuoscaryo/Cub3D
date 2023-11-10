@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/09 23:53:17 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/10 13:35:41 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,18 @@
 
 
 void fps();
+void dibu_player(t_game *game);
+unsigned long millis();
+
 int update(t_game *game)
 {
 	fps();
-	game->player.move(&game->player, game, 0.1);
+	game->player.move(&game->player, game, 0.06);
 	//printf("x: %f, y: %f, angle: %f\n", game->player.x, game->player.y, game->player.rotation);
 	dibuja(game);
 	render(game, game->img, game->map.map);
+	dibu_player(game);
+	
 	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
 	return (0);
 }

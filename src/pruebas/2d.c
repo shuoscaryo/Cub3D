@@ -3,24 +3,19 @@
 
 #define cuadrado_lado 30
 
-void my_pixel(t_img *img, int x, int y, int color)
-{
-	if(x < 0 || y < 0 || x > WIN_WIDTH || y > WIN_HEIGHT)
-		return ;
-	img->put_pixel(img, x, y, color);
-}
-
 int cuadro(t_img *img, int x, int y, int color, int size)
 {
 	int i;
 	int j;
 	i = 0;
-	while (i < size - 1)
+	while (i < size)
 	{
 		j = 0;
-		while (j < size - 1)
+		while (j < size)
 		{
-			my_pixel(img, x + i, y + j, color);
+			img->put_pixel(img, x + i, y + j, color);
+			if (j == size - 1 || i == size - 1 || j == 0 || i == 0)
+				img->put_pixel(img, x + i, y + j, 0xcc888888);
 			j++;
 		}
 		i++;
@@ -35,15 +30,15 @@ void flechita(t_game *game, int x, int y, int color)
 	{
 		float x1 =x +i* cos(game->player.rotation);
 		float y1 =y +i* sin(game->player.rotation);
-		my_pixel(game->img,x1 ,y1 , color);
-		my_pixel(game->img,x1 + 1 , y1 , color);
-		my_pixel(game->img,x1 - 1 ,y1 , color);
-		my_pixel(game->img,x1 ,y1 + 1, color);
-		my_pixel(game->img,x1 ,y1 - 1, color);
-		my_pixel(game->img,x1 + 1 ,y1 + 1, color);
-		my_pixel(game->img,x1 - 1 ,y1 + 1, color);
-		my_pixel(game->img,x1 + 1 ,y1 - 1, color);
-		my_pixel(game->img,x1 - 1 ,y1 - 1, color);
+		game->img->put_pixel(game->img,x1 ,y1 , color);
+		game->img->put_pixel(game->img,x1 + 1 , y1 , color);
+		game->img->put_pixel(game->img,x1 - 1 ,y1 , color);
+		game->img->put_pixel(game->img,x1 ,y1 + 1, color);
+		game->img->put_pixel(game->img,x1 ,y1 - 1, color);
+		game->img->put_pixel(game->img,x1 + 1 ,y1 + 1, color);
+		game->img->put_pixel(game->img,x1 - 1 ,y1 + 1, color);
+		game->img->put_pixel(game->img,x1 + 1 ,y1 - 1, color);
+		game->img->put_pixel(game->img,x1 - 1 ,y1 - 1, color);
 
 	}
 }
@@ -76,7 +71,6 @@ int dibuja(t_game *game)
 		}
 		i++;
 	}
-	dibu_player(game);
 	//printf("x: %f, y: %f, angle: %f\n", game->player.x, game->player.y, game->player.rotation);
 	return (0);
 }

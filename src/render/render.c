@@ -111,7 +111,7 @@ static int	get_pixel(t_game *game, t_ray *ray, char **map)
 		if (is_wall(map, new_x, new_y))
 		{
 			//printf("x: %d, y: %d\n", new_x, new_y);
-			rayo(game->img, game->player.x * cuadrado_lado, game->player.y * cuadrado_lado, ray->x * cuadrado_lado, ray->y * cuadrado_lado, 0xf50000FF);
+			rayo(game->img, game->player.x * cuadrado_lado, game->player.y * cuadrado_lado, ray->x * cuadrado_lado, ray->y * cuadrado_lado, 0xd50000FF);
 			//exit(1);
 			return (0x000000ff);
 		}
@@ -140,7 +140,7 @@ t_img *render(t_game *game , t_img *img, char **map)
 		//while (++y < img->height)
 		//{
 			//alpha = game->player.rotation + atan2(img->width/2 - x, frame_dist); //NOTE UPDATE WITH NEW COORDINATES
-			alpha = game->player.rotation + (FOV/2 - x * FOV / img->width) * PI / 180; 
+			alpha = game->player.rotation + (FOV/2.0 - (float)x * FOV / img->width) * PI / 180; 
 			beta = 0;//tan((img->height - y) / frame_dist); //NOTE UPDATE WITH NEW COORDINATES
 			ray.x = game->player.x;
 			ray.y = game->player.y;

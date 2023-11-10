@@ -9,6 +9,7 @@ void my_pixel(t_img *img, int x, int y, int color)
 		return ;
 	img->put_pixel(img, x, y, color);
 }
+
 int cuadro(t_img *img, int x, int y, int color, int size)
 {
 	int i;
@@ -26,6 +27,7 @@ int cuadro(t_img *img, int x, int y, int color, int size)
 	}
 	return (0);
 }
+
 void flechita(t_game *game, int x, int y, int color)
 {
 	//printf("x: %d, y: %d, angle: %f\n", x, y, game->player.rotation);

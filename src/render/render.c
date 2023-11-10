@@ -68,36 +68,26 @@ static float	move_first_point(t_ray *ray, int *new_x, int *new_y)
 void rayo(t_img *img, int x0, int y0, int x1, int y1, int color)
 {
 	int dx = abs(x1 - x0);
-	int dy = abs(y1 - y0);
+	int dy = -abs(y1 - y0);
 	int sx = x0 < x1 ? 1 : -1;
 	int sy = y0 < y1 ? 1 : -1;
-	if (dx > dy)
+	int err = dx + dy;
+
+	while (x0 != x1 || y0 != y1)
 	{
-		for (int i = 0; i < dx; i ++)
+		img->put_pixel(img, x0, y0, color);
+		int e2 = 2 * err;
+		if (e2 >= dy)
 		{
-			int x = x0 + i * sx;
-			int y = y0 + (y1 - y0) * i * sx / (float)dx;
-			img->put_pixel(img, x, y, color);
+			err += dy;
+			x0 += sx;
+		}
+		if (e2 <= dx)
+		{
+			err += dx;
+			y0 += sy;
 		}
 	}
-	else
-	{
-		for (int i = 0; i < dy; i ++)
-		{
-			int x = x0 + (x1 - x0) * i * sy / (float)dy;
-			int y = y0 + i * sy;
-			img->put_pixel(img, x, y, color);
-		}
-	}
-	/*float angle= atan((y1 - y0) / (x1 -x0));
-	float deltay = sin(angle);
-	float deltax = cos(angle);
-	for (int i = 0; i < 5 * cuadrado_lado; i ++)
-	{
-		float x1 =x0 + i* deltax;
-		float y1 =y0 + i* deltay;
-		img->put_pixel(img, x1, y1, color);
-	}*/
 }
 
 static int	get_pixel(t_game *game, t_ray *ray, char **map)

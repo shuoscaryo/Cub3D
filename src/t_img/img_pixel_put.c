@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 20:15:48 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/10 13:23:08 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/11 16:38:21 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,5 @@ void	img_pixel_put(t_img *this, int x, int y, int color)
 	unsigned int r = (((color >> 16) & 0xff) * (255 - alfa) + alfa * ((*pixel >> 16) & 0xff)) >> 8;
 	unsigned int g = (((color >> 8) & 0xff) * (255-alfa) + alfa * ((*pixel >> 8) & 0xff)) >> 8;
 	unsigned int b = ((color & 0xff) * (255 - alfa)  + alfa * (*pixel & 0xff)) >> 8;
-	#include <stdio.h>
-	static int first = 0;
-	if (alfa != 0 && first == 0)
-	{
-		printf("first_color : %d, %d, %d, %d\n", (*pixel >> 24) & 0xff ,(*pixel >> 16) & 0xff, (*pixel >> 8) & 0xff, *pixel & 0xff);
-		printf("second_color : %d, %d, %d, %d\n", (color >> 24) & 0xff,(color >> 16) & 0xff, (color >> 8) & 0xff, color & 0xff);
-		printf("new_color: %d, %d, %d, %d\n", alfa, r, g, b);
-		first = 1;
-	}
 	*pixel = (r << 16) | (g << 8) | b;
 }

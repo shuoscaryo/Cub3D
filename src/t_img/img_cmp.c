@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   img_cmp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 13:58:45 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/05 18:58:37 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/11 16:16:05 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_textures.h"
+#include "t_img.h"
+#include "libft.h"
 
 int	img_cmp(void *img1, void *img2)
 {

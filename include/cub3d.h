@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:18:14 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/11 13:47:42 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/11 16:13:54 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # include "get_next_line.h"
 # include "t_keys.h"
 # include "t_player.h"
-# include "t_textures.h"
 # include "t_map.h"
 # include "t_img.h"
 
@@ -36,7 +35,6 @@ typedef struct s_game {
 	t_keys		keys;
 	t_player	player;
 	t_img		*textures[4];
-	t_textures	textures;
 	t_img		*img;
 }	t_game;
 

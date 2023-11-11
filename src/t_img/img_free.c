@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   img_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 22:24:00 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/05 14:34:19 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/11 16:14:25 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_textures.h"
+#include "t_img.h"
 #include "mlx.h"
 #include <stdlib.h>
 

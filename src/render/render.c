@@ -180,7 +180,7 @@ t_img *render(t_game *game , t_img *img, char **map)
 //	float frame_dist;
 	x = -1;
 	//frame_dist = img->width / ( 2.0f * tan(FOV * PI / 360.0f));
-	/*while (++x < img->width)
+	while (++x < img->width)
 	{
 	///	//y = -1;
 		//while (++y < img->height)

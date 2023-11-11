@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   img_new.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 20:31:01 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/06 19:36:58 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/11 16:14:38 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_textures.h"
+#include "t_img.h"
 #include "mlx.h"
 #include "libft.h"
 

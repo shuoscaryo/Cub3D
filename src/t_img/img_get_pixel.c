@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   img_get_pixel.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 20:18:13 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/05 13:40:25 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/11 16:14:31 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_textures.h"
+#include "t_img.h"
 
 int	img_get_pixel(t_img *this, int x, int y)
 {

@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/11 16:09:28 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/11 16:17:04 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int	main(int argc, char **argv)
 	//game_init(&game);
 	keys_init(&game.keys);
 	player_init(&game.player, game.map.x + 0.5, game.map.y + 0.5, game.map.rotation);
-	if (!textures_init(&game))
-		return (free_map(&game.map), 0);
+	/*if (!textures_init(&game))
+		return (free_map(&game.map), 0);*/
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
 	game.img = img_new2(game.mlx, WIN_WIDTH, WIN_HEIGHT);

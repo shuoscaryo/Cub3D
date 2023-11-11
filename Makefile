@@ -45,13 +45,6 @@ SRC := game_exit.c\
 	t_img/img_get_pixel.c\
 	render/render.c\
 	movement.c\
-	t_walls/walls_add_wall.c\
-	t_walls/walls_get_hash.c\
-	t_walls/wall_init.c\
-	t_walls/walls_free.c\
-	t_walls/wall_cmp.c\
-	t_walls/walls_get_wall.c\
-	t_walls/walls_init.c\
 	main.c\
 	manage_map/read_map.c\
 	manage_map/get_map.c\
@@ -66,10 +59,6 @@ SRC := game_exit.c\
 	t_keys/keys_get_status.c\
 	t_keys/keys_update.c\
 	t_keys/keys_init.c\
-	t_textures/textures_free.c\
-	t_textures/textures_init.c\
-	t_textures/textures_add_texture.c\
-	t_textures/textures_get_texture.c\
 	t_player/player_move.c\
 	t_player/player_init.c\
 	t_player/player_on_key.c\

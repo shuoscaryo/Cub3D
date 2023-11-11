@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 22:11:53 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/11 10:56:54 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/11 16:08:56 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #  define W 119
 #  define A 97
 #  define S 115
+# define E 101
 #  define RIGHT 65363
 #  define LEFT 65361
 #  define ESC 65307

@@ -15,7 +15,7 @@ int cuadro(t_img *img, int x, int y, int color, int size)
 		{
 			img->put_pixel(img, x + i, y + j, color);
 			if (j == size - 1 || i == size - 1 || j == 0 || i == 0)
-				img->put_pixel(img, x + i, y + j, 0xcc888888);
+				img->put_pixel(img, x + i, y + j, 0x55888888);
 			j++;
 		}
 		i++;

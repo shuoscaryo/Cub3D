@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:18:14 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/09 18:16:53 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/11 13:47:42 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_game {
 	t_map		map;
 	t_keys		keys;
 	t_player	player;
+	t_img		*textures[4];
 	t_textures	textures;
 	t_img		*img;
 }	t_game;

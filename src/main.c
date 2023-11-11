@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/10 13:35:41 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/11 13:55:49 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ unsigned long millis();
 
 int update(t_game *game)
 {
-	fps();
+	//fps();
 	game->player.move(&game->player, game, 0.06);
 	//printf("x: %f, y: %f, angle: %f\n", game->player.x, game->player.y, game->player.rotation);
 	dibuja(game);
@@ -28,6 +28,27 @@ int update(t_game *game)
 	
 	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
 	return (0);
+}
+
+int textures_init(t_game *game)
+{
+	int	i;
+
+	game->textures[0] = img_new(game->mlx, game->map.WE);
+	game->textures[1] = img_new(game->mlx, game->map.NO);
+	game->textures[2] = img_new(game->mlx, game->map.EA);
+	game->textures[3] = img_new(game->mlx, game->map.SO);
+	if (!game->textures[0] || !game->textures[1] || !game->textures[2] || !game->textures[3])
+	{
+		i = 0;
+		while (i < 4)
+		{
+			game->textures[i]->free(game->textures[i], game->mlx);
+			i++;
+		}
+		return (0);
+	}
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -41,6 +62,8 @@ int	main(int argc, char **argv)
 	//game_init(&game);
 	keys_init(&game.keys);
 	player_init(&game.player, game.map.x + 0.5, game.map.y + 0.5, game.map.rotation);
+	if (!textures_init(&game))
+		return (free_map(&game.map), 0);
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
 	game.img = img_new2(game.mlx, WIN_WIDTH, WIN_HEIGHT);

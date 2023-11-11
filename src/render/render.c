@@ -51,6 +51,9 @@ static float	move_first_point(t_ray *ray, int *new_x, int *new_y)
 		tx = (*new_x - ray->x) / ray->delta_x; //Check if delta_x is 0
 	*new_y = (int)ray->y + (ray->delta_y > 0 );
 		ty = (*new_y - ray->y) / ray->delta_y; //Check if delta_y is 0
+	printf("x %d, y %d\n", (int)ray->x, (int)ray->y);
+	printf("new x %d, new y%d\n", *new_x, *new_y);
+	printf("%f, %f\n", ray->delta_x, ray->delta_y);
 	if (ray->delta_y < 0)
 		(*new_y)--;
 	if (ray->delta_x < 0)
@@ -93,6 +96,56 @@ void rayo(t_img *img, int x0, int y0, int x1, int y1, int color)
 		}
 	}
 }
+/*
+		1
+	 ___________
+	|			|
+0	|			|  2
+	|			|
+	|___________|
+
+		3
+*/
+int	get_wall_pixel(t_game *game, int x, int y, t_ray *ray)
+{
+	int		face;
+	float	percentage;
+	int		pixel_x;
+	int		pixel_y;
+
+	if ((ray->x - 0.05) < (float) x)
+	{
+		face = 0;
+		percentage = ray->y - (float)y;
+		pixel_x = (int)(percentage * game->textures[face]->width);
+		pixel_y = (int)((1 - ray->z) * game->textures[face]->height);
+		return (game->textures[face]->get_pixel(game->textures[face], pixel_x, pixel_y));
+	}
+	else if ((ray->x + 0.05) > (float) x + 1)
+	{
+		face = 2;
+		percentage = 1 - (ray->y - (float)y);
+		pixel_x = (int)(percentage * game->textures[face]->width);
+		pixel_y = (int)((1 - ray->z) * game->textures[face]->height);
+		return (game->textures[face]->get_pixel(game->textures[face], pixel_x, pixel_y));
+	}
+	else if ((ray->y - 0.05) < (float) y)
+	{
+		face = 1;
+		percentage = 1 - (ray->x - (float)x);
+		pixel_x = (int)(percentage * game->textures[face]->width);
+		pixel_y = (int)((1 - ray->z) * game->textures[face]->height);
+		return (game->textures[face]->get_pixel(game->textures[face], pixel_x, pixel_y));
+	}
+	else
+	{
+		face = 3;
+		percentage = ray->x - (float)x;
+		pixel_x = (int)(percentage * game->textures[face]->width);
+		pixel_y = (int)((1 - ray->z) * game->textures[face]->height);
+		return (game->textures[face]->get_pixel(game->textures[face], pixel_x, pixel_y));
+	}
+}
 
 static int	get_pixel(t_game *game, t_ray *ray, char **map)
 {
@@ -113,6 +166,7 @@ static int	get_pixel(t_game *game, t_ray *ray, char **map)
 			//printf("x: %d, y: %d\n", new_x, new_y);
 			rayo(game->img, game->player.x * cuadrado_lado, game->player.y * cuadrado_lado, ray->x * cuadrado_lado, ray->y * cuadrado_lado, 0xdd0000FF | ((int)((float)g_x /WIN_WIDTH * (1 << 8) - 1 )<< 8));
 			//exit(1);
+			get_wall_pixel(game, new_x, new_y, ray);
 			return (0x000000ff);
 		}
 		t += move_next_point(ray, &new_x, &new_y);
@@ -134,7 +188,7 @@ t_img *render(t_game *game , t_img *img, char **map)
 //	float frame_dist;
 	x = -1;
 	//frame_dist = img->width / ( 2.0f * tan(FOV * PI / 360.0f));
-	while (++x < img->width)
+	/*while (++x < img->width)
 	{
 		//y = -1;
 		//while (++y < img->height)
@@ -152,6 +206,16 @@ t_img *render(t_game *game , t_img *img, char **map)
 			get_pixel(game, &ray, map);
 			//img->put_pixel(img, x, y, get_pixel(game, &ray, map));
 		//}
-	}
+	}*/
+	alpha = game->player.rotation + (-FOV/2.0 + (float)x * FOV / img->width) * PI / 180; 
+	g_x = x;
+	beta = 0;//tan((img->height - y) / frame_dist); //NOTE UPDATE WITH NEW COORDINATES
+	ray.x = game->player.x;
+	ray.y = game->player.y;
+	ray.z = game->player.z;
+	ray.delta_x = cos(beta) * cos(alpha); //NOTE UPDATE WITH NEW COORDINATES
+	ray.delta_y = cos(beta) * sin(alpha); //NOTE UPDATE WITH NEW COORDINATES
+	ray.delta_z = sin(beta); //NOTE UPDATE WITH NEW COORDINATES
+	get_pixel(game, &ray, map);
 	return (img);
 }

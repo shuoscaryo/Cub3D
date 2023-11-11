@@ -149,7 +149,7 @@ static int	get_pixel(t_game *game, t_ray *ray, char **map)
 			//printf("x: %d, y: %d\n", new_x, new_y);
 			rayo(game->img, game->player.x * cuadrado_lado, game->player.y * cuadrado_lado, ray->x * cuadrado_lado, ray->y * cuadrado_lado, 0x000000FF /*| ((int)((float)g_x /WIN_WIDTH * (1 << 8) - 1 )<< 8)*/);
 			//exit(1);
-			get_wall_pixel(game, new_x, new_y, ray);
+			//get_wall_pixel(game, new_x, new_y, ray);
 			return (0x000000ff);
 		}
 		t += move_next_point(ray, &new_x, &new_y);

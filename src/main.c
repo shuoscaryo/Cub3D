@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/11 17:48:21 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/11 18:36:01 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,22 @@ void fps();
 void dibu_player(t_game *game);
 unsigned long millis();
 
+static void	ft_scale_pixels(t_img *new_img, t_img *img, int width, int height)
+{
+	int	i;
+	int	j;
+
+	j = -1;
+	while (++j < height)
+	{
+		i = -1;
+		while (++i < width)
+			new_img->put_pixel(new_img, i, j, img->get_pixel(img,
+					(int)((float)i / width * img->width),
+					(int)((float)j / height * img->height)));
+	}
+}
+
 int update(t_game *game)
 {
 	//fps();
@@ -25,9 +41,10 @@ int update(t_game *game)
 	//printf("x: %f, y: %f, angle: %f\n", game->player.x, game->player.y, game->player.rotation);
 	//dibuja(game);
 	render(game, game->img, game->map.map);
+	ft_scale_pixels(game->img2, game->img, game->img2->width, game->img2->height);
 	//dibu_player(game);
 	
-	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->img2->img, 0, 0);
 	return (0);
 }
 
@@ -65,7 +82,8 @@ int	main(int argc, char **argv)
 	player_init(&game.player, game.map.x + 0.5, game.map.y + 0.5, game.map.rotation);
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
-	game.img = img_new2(game.mlx, WIN_WIDTH, WIN_HEIGHT);
+	game.img = img_new2(game.mlx, WIN_WIDTH * RESOLUTION, WIN_HEIGHT * RESOLUTION);
+	game.img2 = img_new2(game.mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!textures_init(&game))
 		return (free_map(&game.map), 0);
 	mlx_hook(game.win, ON_DESTROY, NO_EVENT_MASK, game_exit, &game);

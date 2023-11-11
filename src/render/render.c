@@ -40,7 +40,7 @@ static float	move_next_point(t_ray *ray, int *new_x, int *new_y)
 	ray->x += ray->delta_x * tx;
 	ray->y += ray->delta_y * tx;
 	ray->z += ray->delta_z * tx;
-	g_img->put_pixel(g_img, ray->x * cuadrado_lado , ray->y * cuadrado_lado, 0x00aaffaa);
+	/* g_img->put_pixel(g_img, ray->x * cuadrado_lado , ray->y * cuadrado_lado, 0x00aaffaa);
 	g_img->put_pixel(g_img, ray->x * cuadrado_lado +1, ray->y * cuadrado_lado, 0x00aaffaa);
 	g_img->put_pixel(g_img, ray->x * cuadrado_lado , ray->y * cuadrado_lado +1, 0x00aaffaa);
 	g_img->put_pixel(g_img, ray->x * cuadrado_lado , ray->y * cuadrado_lado-1, 0x00aaffaa);
@@ -48,7 +48,7 @@ static float	move_next_point(t_ray *ray, int *new_x, int *new_y)
 	g_img->put_pixel(g_img, ray->x * cuadrado_lado -1 , ray->y * cuadrado_lado-1, 0x00aaffaa);
 	g_img->put_pixel(g_img, ray->x * cuadrado_lado -1 , ray->y * cuadrado_lado+1, 0x00aaffaa);
 	g_img->put_pixel(g_img, ray->x * cuadrado_lado +1 , ray->y * cuadrado_lado-1, 0x00aaffaa);
-	g_img->put_pixel(g_img, ray->x * cuadrado_lado +1 , ray->y * cuadrado_lado+1, 0x00aaffaa);
+	g_img->put_pixel(g_img, ray->x * cuadrado_lado +1 , ray->y * cuadrado_lado+1, 0x00aaffaa); */
 	return (tx);
 }
 
@@ -139,7 +139,6 @@ static int	get_pixel(t_game *game, t_ray *ray, char **map)
 	t += move_next_point(ray, &new_x, &new_y);
 	while (t < RENDER_DISTANCE)
 	{
-		if(print)printf("x: %f, y: %f, z: %f, nx: %d, ny: %d, newx: %d, newy: %d\n", ray->x, ray->y, ray->z, ray->next_x, ray->next_y, new_x, new_y);
 		if (ray->z > 1)
 			return (game->map.F[0] << 16 | game->map.F[1] << 8 | game->map.F[2]);
 		if (ray->z < 0)
@@ -167,19 +166,10 @@ t_img *render(t_game *game , t_img *img, char **map)
 	t_ray ray;
 	float	alpha;
 	float	beta;
-	static int last_pressed= 0;
-	if (game->keys.get_status(&game->keys, E) && !last_pressed)
-	{
-		printf("NEW_RAY\n");
-		last_pressed = 1;
-		print = 1;
-	}
-	if (!game->keys.get_status(&game->keys, E))
-		last_pressed = 0;
 //	float frame_dist;
 	x = -1;
 	//frame_dist = img->width / ( 2.0f * tan(FOV * PI / 360.0f));
-	float FOV2 = (float)FOV / WIN_WIDTH * WIN_HEIGHT;
+	float FOV2 = (float)FOV / img->width * img->height;
 	while (++x < img->width)
 	{
 	y = -1;
@@ -199,7 +189,6 @@ t_img *render(t_game *game , t_img *img, char **map)
 			ray.delta_z = sin(beta); //NOTE UPDATE WITH NEW COORDINATES
 			ray.next_x = ray.x + (ray.delta_x > 0);
 			ray.next_y = ray.y + (ray.delta_y > 0);
-			if(print)printf("x: %f, y: %f, dx: %f, dy: %f, nx: %d, ny: %d\n", ray.x, ray.y, ray.delta_x, ray.delta_y, ray.next_x, ray.next_y);
 			//get_pixel(game, &ray, map);
 			img->put_pixel(img, x, y, get_pixel(game, &ray, map));
 		}

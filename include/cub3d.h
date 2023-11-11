@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:18:14 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/11 16:13:54 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/11 18:33:17 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_game {
 	t_player	player;
 	t_img		*textures[4];
 	t_img		*img;
+	t_img		*img2;
 }	t_game;
 
 int		on_key_up(int key, t_game *game);

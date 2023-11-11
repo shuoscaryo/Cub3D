@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 22:11:53 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/11 18:25:54 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/11 18:41:32 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define WIN_WIDTH 270
-# define WIN_HEIGHT 180
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
+# define RESOLUTION 0.1f
 
 # if defined(__linux__)
 #  define D 100
 #  define W 119
 #  define A 97
 #  define S 115
-# define E 101
 #  define RIGHT 65363
 #  define LEFT 65361
 #  define ESC 65307

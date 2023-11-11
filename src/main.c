@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/11 18:36:01 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/11 18:53:35 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	ft_scale_pixels(t_img *new_img, t_img *img, int width, int height)
 
 int update(t_game *game)
 {
-	//fps();
+	fps();
 	//fps();
 	game->player.move(&game->player, game, 0.06);
 	//printf("x: %f, y: %f, angle: %f\n", game->player.x, game->player.y, game->player.rotation);

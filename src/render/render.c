@@ -137,7 +137,8 @@ static int	get_pixel(t_game *game, t_ray *ray, char **map)
 	new_x = ray->x;
 	new_y = ray->y;
 	t += move_next_point(ray, &new_x, &new_y);
-	while (t < RENDER_DISTANCE)
+	#include <math.h>
+	while (abs((int)sqrt((game->player.x - ray->x) * (game->player.x - ray->x) + (game->player.y - ray->y) * (game->player.y - ray->y))) < RENDER_DISTANCE)
 	{
 		if (ray->z > 1)
 			return (game->map.F[0] << 16 | game->map.F[1] << 8 | game->map.F[2]);
@@ -153,7 +154,7 @@ static int	get_pixel(t_game *game, t_ray *ray, char **map)
 		t += move_next_point(ray, &new_x, &new_y);
 	}
 	//rayo(game->img, game->player.x * cuadrado_lado, game->player.y * cuadrado_lado, ray->x * cuadrado_lado, ray->y * cuadrado_lado, 0x000000FF /*| ((int)((float)g_x /WIN_WIDTH * (1 << 8) - 1 )<< 8)*/);
-	if (ray->z < game->player.z)
+	if (ray->z > game->player.z)
 		return (game->map.F[0] << 16 | game->map.F[1] << 8 | game->map.F[2]);
 	return (game->map.C[0] << 16 | game->map.C[1] << 8 | game->map.C[2]);
 }

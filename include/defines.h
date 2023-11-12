@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 22:11:53 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/11 19:11:00 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/12 11:28:59 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define WIN_WIDTH 1080
 # define WIN_HEIGHT 720
-# define RESOLUTION 0.4f
+# define RESOLUTION 0.5f
 
 # if defined(__linux__)
 #  define D 100
@@ -57,7 +57,7 @@ enum {
 # define PLAYER_HEIGHT 0.5f
 
 # define PI 3.14159265359
-# define FOV 120
+# define FOV 60.0f
 # define RENDER_DISTANCE 20
 
 #endif

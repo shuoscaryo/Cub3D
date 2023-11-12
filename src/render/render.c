@@ -100,7 +100,7 @@ void	print_pixels(t_game *game, int x, int y, t_ray *ray, int img_x)
 	}
 	pixel_x = (int)(percentage * game->textures[face]->width);
 	float dist_screen = ray->img->height / (2.0f * tan(FOV * PI * ray->img->height/ (360.0f * ray->img->width)));
-	float dist_wall = sqrt((game->player.x - ray->x) * (game->player.x - ray->x) + (game->player.y - ray->y) * (game->player.y - ray->y));
+	float dist_wall = sqrt((game->player.x - ray->x) * (game->player.x - ray->x) + (game->player.y - ray->y) * (game->player.y - ray->y)) * fabs(cos(g_x - game->player.rotation));
 	float tan_beta = 0.5 / dist_wall;
 	for ( int i = 0; i < ray->img->height; i++)
 	{

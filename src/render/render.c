@@ -78,17 +78,17 @@ void	print_pixels(t_game *game, int x, int y, t_ray *ray, int img_x)
 	int		pixel_x;
 	int		pixel_y;
 
-	if ((ray->x - 0.005) < (float)x)
+	if ((ray->x - 0.000005) < (float)x)
 	{
 		face = 0;
 		percentage = ray->y - (float)y;
 	}
-	else if ((ray->x + 0.005) > (float) x + 1)
+	else if ((ray->x + 0.000005) > (float) x + 1)
 	{
 		face = 2;
 		percentage = 1 - (ray->y - (float)y);
 	}
-	else if ((ray->y - 0.0005) < (float) y)
+	else if ((ray->y - 0.0000005) < (float) y)
 	{
 		face = 1;
 		percentage = 1 - (ray->x - (float)x);

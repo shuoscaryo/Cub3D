@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:44:16 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/12 14:36:33 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:27:41 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	player_move(t_player *this, t_game *game, float delta_time)
 	y = this->y + vy * delta_time;
 	this->rotation += this->v_rotation * delta_time;
 	adjust_rotation(&this->rotation);
-	//printf("vx: %f, vy: %f\n", vx, vy);
 	if (is_wall(game->map.map, (int)(x + this->size * ((vx > 0) - (vx < 0))), y))
 		this->x = (int)(x) + (vx > 0) + this->size * ((vx < 0) - (vx > 0));
 	else

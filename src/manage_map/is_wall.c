@@ -6,15 +6,15 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:46:35 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/13 17:02:01 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/13 17:10:43 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_array_len(char **str)
+static int	ft_array_len(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])

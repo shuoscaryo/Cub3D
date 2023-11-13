@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:38:58 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/05 20:48:12 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/13 17:26:03 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,7 @@ typedef struct s_key
 }	t_key;
 
 int		key_cmp(void *key1, void *key2);
-
-typedef struct s_keys
-{
-	t_list	*keys;
-	int		(*update)(struct s_keys *this, int keycode, int status);
-	void	(*free)(void *this);
-	int		(*get_status)(struct s_keys *this, int keycode);
-}	t_keys;
-
-void	keys_init(t_keys *this);
-int		keys_update(t_keys *this, int keycode, int status);
-void	keys_free(void *this);
-int		keys_get_status(t_keys *this, int keycode);
+int		keys_update(t_list **list, int keycode, int status);
+int		keys_get_status(t_list *list, int keycode);
 
 #endif

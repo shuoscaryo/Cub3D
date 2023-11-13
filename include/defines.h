@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 22:11:53 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/13 17:09:07 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/13 17:31:21 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ enum {
 # define PLAYER_SIZE 0.2f
 # define PLAYER_MOVE_SPEED 1.0f
 # define PLAYER_ROT_SPEED 0.6f
-# define PLAYER_HEIGHT 0.5f
 
 # define PI 3.14159265359
 # define FOV 60.0f

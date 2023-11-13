@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/13 17:08:57 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/13 17:28:19 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,8 @@ unsigned long millis();
 int update(t_game *game)
 {
 	fps();
-	game->player.move(&game->player, game, 0.06);
-	//printf("x: %f, y: %f, angle: %f\n", game->player.x, game->player.y, game->player.rotation);
-	//dibuja(game);
+	player_move(&game->player, game, 0.06);
 	render(game, game->img);
-	
 	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
 	return (0);
 }
@@ -37,7 +34,8 @@ int textures_init(t_game *game)
 	game->textures[1] = img_new(game->mlx, game->map.NO);
 	game->textures[2] = img_new(game->mlx, game->map.EA);
 	game->textures[3] = img_new(game->mlx, game->map.SO);
-	if (!game->textures[0] || !game->textures[1] || !game->textures[2] || !game->textures[3])
+	if (!game->textures[0] || !game->textures[1]
+		|| !game->textures[2] || !game->textures[3])
 	{
 		i = 0;
 		while (i < 4)
@@ -59,9 +57,11 @@ int	main(int argc, char **argv)
 	if (!read_map(&game.map, argv[1]))
 		return (free_map(&game.map), 0);
 	//game_init(&game);
-	keys_init(&game.keys);
+	game.keys = NULL;
 	player_init(&game.player, game.map.x + 0.5, game.map.y + 0.5, game.map.rotation);
 	game.mlx = mlx_init();
+	if (!game.mlx)
+		return (1);
 	game.win = mlx_new_window(game.mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
 	game.img = img_new2(game.mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!textures_init(&game))

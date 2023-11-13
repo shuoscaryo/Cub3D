@@ -13,16 +13,16 @@
 #include "t_player.h"
 #include "defines.h"
 
-void	player_on_key(t_player *this, t_keys *keys)
+void	player_on_key(t_player *this, t_list *keys)
 {
 	int		front_mov;
 	int		side_mov;
 	int		rot_mov;
 	float	aux;
 
-	front_mov = keys->get_status(keys, W) - keys->get_status(keys, S);
-	side_mov = keys->get_status(keys, D) - keys->get_status(keys, A);
-	rot_mov = keys->get_status(keys, RIGHT) - keys->get_status(keys, LEFT);
+	front_mov = keys_get_status(keys, W) - keys_get_status(keys, S);
+	side_mov = keys_get_status(keys, D) - keys_get_status(keys, A);
+	rot_mov = keys_get_status(keys, RIGHT) - keys_get_status(keys, LEFT);
 	if (front_mov && side_mov)
 		aux = 0.70710678118;
 	else

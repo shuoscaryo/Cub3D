@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 19:35:45 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/07 16:27:39 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/13 17:18:09 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ static char	malloc_img(t_img **img)
 	(*img)->filename = NULL;
 	(*img)->img = NULL;
 	(*img)->addr = NULL;
-	(*img)->put_pixel = img_pixel_put;
-	(*img)->get_pixel = img_get_pixel;
-	(*img)->cmp = img_cmp;
-	(*img)->free = img_free;
 	return (1);
 }
 
@@ -37,7 +33,7 @@ t_img	*img_new2(void *mlx, int width, int height)
 		return (NULL);
 	img->img = mlx_new_image(mlx, width, height);
 	if (!img->img)
-		return (img->free(img, mlx), free(img), NULL);
+		return (img_free(img, mlx), free(img), NULL);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->size_line, &img->endian);
 	img->width = width;

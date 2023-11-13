@@ -6,27 +6,21 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/13 17:28:19 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/13 17:39:16 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
-void fps();
-void dibu_player(t_game *game);
-unsigned long millis();
-
-int update(t_game *game)
+int	update(t_game *game)
 {
-	fps();
 	player_move(&game->player, game, 0.06);
 	render(game, game->img);
 	mlx_put_image_to_window(game->mlx, game->win, game->img->img, 0, 0);
 	return (0);
 }
 
-int textures_init(t_game *game)
+int	textures_init(t_game *game)
 {
 	int	i;
 

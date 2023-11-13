@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 22:11:53 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/12 18:18:59 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/13 14:41:30 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define WIN_WIDTH 1080
 # define WIN_HEIGHT 720
-# define RESOLUTION 0.5f
+# define RESOLUTION 1.0f
 
 # if defined(__linux__)
 #  define D 100

@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 22:11:53 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/13 14:41:30 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/13 15:33:01 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ enum {
 
 # define PI 3.14159265359
 # define FOV 60.0f
-# define RENDER_DISTANCE 20
+# define RENDER_DISTANCE 20 //subir esto para que nunca se deje de renderizar por si acaso hay un pelotudo
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/12 14:36:38 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/13 14:48:39 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int update(t_game *game)
 	game->player.move(&game->player, game, 0.06);
 	//printf("x: %f, y: %f, angle: %f\n", game->player.x, game->player.y, game->player.rotation);
 	//dibuja(game);
-	render(game, game->img, game->map.map);
+	render(game, game->img);
 	ft_scale_pixels(game->img2, game->img, game->img2->width, game->img2->height);
 	//dibu_player(game);
 	

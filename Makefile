@@ -37,33 +37,33 @@ endif
 
 # Source files without SRC_DIR
 SRC := game_exit.c\
-	t_img/img_pixel_put.c\
-	t_img/img_new2.c\
-	t_img/img_new.c\
-	t_img/img_free.c\
-	t_img/img_cmp.c\
-	t_img/img_get_pixel.c\
-	render/render.c\
-	movement.c\
-	main.c\
-	manage_map/read_map.c\
-	manage_map/get_map.c\
-	manage_map/map_utils.c\
-	manage_map/check_map.c\
-	manage_map/is_wall.c\
-	manage_map/get_textures.c\
 	gnl/get_next_line.c\
 	gnl/get_next_line_utils.c\
+	main.c\
+	manage_map/check_map.c\
+	manage_map/get_map.c\
+	manage_map/get_textures.c\
+	manage_map/is_wall.c\
+	manage_map/map_utils.c\
+	manage_map/read_map.c\
+	movement.c\
+	pruebas/2d.c\
+	pruebas/fps.c\
+	render/render.c\
+	t_img/img_cmp.c\
+	t_img/img_free.c\
+	t_img/img_get_pixel.c\
+	t_img/img_new.c\
+	t_img/img_new2.c\
+	t_img/img_pixel_put.c\
 	t_keys/key_cmp.c\
 	t_keys/keys_free.c\
 	t_keys/keys_get_status.c\
-	t_keys/keys_update.c\
 	t_keys/keys_init.c\
-	t_player/player_move.c\
+	t_keys/keys_update.c\
 	t_player/player_init.c\
-	t_player/player_on_key.c\
-	pruebas/fps.c\
-	pruebas/2d.c
+	t_player/player_move.c\
+	t_player/player_on_key.c
 
 # Setup obj and src files and obj folders
 SRC := $(addprefix $(SRC_DIR)/,$(SRC))

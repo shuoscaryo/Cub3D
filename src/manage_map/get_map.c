@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 18:29:49 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/08 20:28:32 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:04:38 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	save_map(t_map *map, t_list **list)
 		aux = *list;
 		*list = (*list)->next;
 		free(aux);
-		printf("%s\n", map->map[i]);
 		i++;
 	}
 	map->map[i] = NULL;

@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:18:14 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/13 17:22:18 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/14 16:03:45 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,16 @@
 typedef struct s_game {
 	void		*mlx;
 	void		*win;
-	t_map		map;
-	t_list		*keys;
-	t_player	player;
-	t_img		*textures[4];
 	t_img		*img;
-	t_img		*img2;
+	t_list		*keys;
+	t_img		*textures[4];
+	t_map		map;
+	t_player	player;
 }	t_game;
 
+int		game_init(t_game *game, char *file);
 int		on_key_up(int key, t_game *game);
 int		on_key_down(int key, t_game *game);
-int		check_params(int argc, char **argv, t_game *game);
 int		game_exit(t_game *game);
 int		dibuja(t_game *game);
 t_img	*render(t_game *game , t_img *img);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_map.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 16:33:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/09 13:47:01 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:14:31 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_map {
 }	t_map;
 
 int		read_map(t_map *map, char *path);
-void	free_map(t_map *map);
+void	map_free(t_map *map);
 int		get_textures(char **aux, t_map *map);
 int		are_nbr(char **colors);
 int		get_map(t_map *map);

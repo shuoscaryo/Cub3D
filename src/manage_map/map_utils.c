@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 17:09:12 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/05 18:46:50 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:15:09 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,19 +67,6 @@ void	delete_n(char *line)
 			line[i] = '\0';
 		i++;
 	}
-}
-
-int	check_params(int argc, char **argv, t_game *game)
-{
-	if (argc != 2)
-		return (printf("Error.\nPlease enter Map.\n"), 0);
-	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".cub", 4) != 0)
-		return (printf("Error.\nPlease enter a valid Map.\n"), 0);
-	game->map.fd = open(argv[1], O_RDONLY);
-	if (game->map.fd == -1)
-		return (printf("Error.\nMap doesn't exist.\n"), 0);
-	close(game->map.fd);
-	return (1);
 }
 
 void	init_var(t_map *map)

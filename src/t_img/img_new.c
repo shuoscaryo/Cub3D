@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 20:31:01 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/13 17:17:58 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/14 15:00:49 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,18 @@ static char	malloc_img(t_img **img)
 
 t_img	*img_new(void *mlx, char *filename)
 {
-	t_img	*this;
+	t_img	*img;
 
-	if (!filename || !malloc_img(&this))
+	if (!filename || !malloc_img(&img))
 		return (NULL);
-	this->filename = ft_strdup(filename);
-	if (!(this->filename))
-		return (img_free(this, mlx), free(this), NULL);
-	this->img = mlx_xpm_file_to_image(mlx, filename, &this->width,
-			&this->height);
-	if (!(this->img))
-		return (img_free(this, mlx), free(this), NULL);
-	this->addr = mlx_get_data_addr(this->img, &this->bits_per_pixel,
-			&this->size_line, &this->endian);
-	return (this);
+	img->filename = ft_strdup(filename);
+	if (!(img->filename))
+		return (img_free(img, mlx), free(img), NULL);
+	img->img = mlx_xpm_file_to_image(mlx, filename, &img->width,
+			&img->height);
+	if (!(img->img))
+		return (img_free(img, mlx), free(img), NULL);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+			&img->size_line, &img->endian);
+	return (img);
 }

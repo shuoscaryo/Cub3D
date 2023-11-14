@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_wall.c                                          :+:      :+:    :+:   */
+/*   map_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 13:46:35 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/14 15:13:05 by orudek           ###   ########.fr       */
+/*   Created: 2023/11/14 16:11:27 by orudek            #+#    #+#             */
+/*   Updated: 2023/11/14 16:15:05 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "t_map.h"
+#include "libft.h"
 
-static int	ft_array_len(char **str)
+void	map_free(t_map *map)
 {
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int	is_wall(char **map, int x, int y)
-{
-	if (x < 0 || y < 0)
-		return (1);
-	if (y >= ft_array_len(map) || x >= (int)ft_strlen(map[y]))
-		return (1);
-	return (map[y][x] == '1');
+	if (map->map)
+		ft_array_free(map->map);
+	if (map->NO)
+		free(map->NO);
+	if (map->SO)
+		free(map->SO);
+	if (map->WE)
+		free(map->WE);
+	if (map->EA)
+		free(map->EA);
 }

@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 20:29:37 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/05 20:34:45 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/14 16:06:20 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 int	game_exit(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->win);
-	exit (0);
+	exit(0);
+	return (0);
 }

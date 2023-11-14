@@ -6,23 +6,13 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:43:43 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/13 17:03:18 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/14 16:13:38 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_map(t_map *map)
-{
-	if (map->NO)
-		free(map->NO);
-	if (map->SO)
-		free(map->SO);
-	if (map->WE)
-		free(map->WE);
-	if (map->EA)
-		free(map->EA);
-}
+
 
 int	all_data(t_map *map)
 {
@@ -74,9 +64,12 @@ int	get_data(t_map *map)
 
 int	read_map(t_map *map, char *path)
 {
+	ft_bzero(map, sizeof(t_map));
+	if (ft_strncmp(path + ft_strlen(path) - 4, ".cub", 4) != 0) //NOTE dice slack que no le gusta que un file se llame .cub
+		return (printf("Error: Invalid map name.\n"), 0);
 	map->fd = open(path, O_RDONLY);
 	if (map->fd == -1)
-		return (printf("Error.\nUnexpected error reading Map.\n"), 0);
+		return (printf("Error: Couldn't open map.\n"), 0);
 	init_var(map);
 	if (!get_data(map))
 		return (0);

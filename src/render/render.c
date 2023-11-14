@@ -1,18 +1,18 @@
-#include "cub3d.h"
-#include <math.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/14 17:12:03 by orudek            #+#    #+#             */
+/*   Updated: 2023/11/14 17:20:32 by orudek           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-typedef struct s_ray
-{
-	float	x;
-	float	y;
-	float	delta_x;
-	float	delta_y;
-	int		next_x;
-	int		next_y;
-	int 	face;
-	float	alpha;
-	t_img	*img;
-}	t_ray;
+#include "cub3d.h"
+#include "render.h"
+#include <math.h>
 
 static int	get_hex(int r, int g, int b)
 {
@@ -26,7 +26,7 @@ static void	move_next_point(t_ray *ray, int *new_x, int *new_y)
 
 	tx = (ray->next_x - ray->x) / ray->delta_x;
 	ty = (ray->next_y - ray->y) / ray->delta_y;
-	if (ty < tx && ty > 0) // if time to right grid is bigger than time to up grid
+	if (ty < tx && ty > 0)
 	{
 		*new_y += (ray->delta_y > 0) - (ray->delta_y < 0);
 		ray->next_y += (ray->delta_y > 0) - (ray->delta_y < 0);
@@ -35,7 +35,7 @@ static void	move_next_point(t_ray *ray, int *new_x, int *new_y)
 	}
 	else
 	{
-		*new_x += (ray->delta_x > 0) - (ray->delta_x < 0) ;
+		*new_x += (ray->delta_x > 0) - (ray->delta_x < 0);
 		ray->next_x += (ray->delta_x > 0) - (ray->delta_x < 0);
 		ray->face = 0 + 2 * (ray->delta_x < 0);
 	}
@@ -97,10 +97,6 @@ static void	print_filler(t_game *game, t_ray *ray, int x)
 	}	
 }
 
-
-
-
-
 static void	put_vertical_line(t_game *game, t_ray *ray, int x)
 {
 	int		new_x;
@@ -116,14 +112,14 @@ static void	put_vertical_line(t_game *game, t_ray *ray, int x)
 		dx = game->player.x - ray->x;
 		dy = game->player.y - ray->y;
 		if (sqrt(dx * dx + dy * dy) > RENDER_DISTANCE)
-			break;
+			break ;
 		if (is_wall(game->map.map, new_x, new_y))
-			return (print_pixels(game, new_x, new_y, ray,x));
+			return (print_pixels(game, new_x, new_y, ray, x));
 	}
-	print_filler(game, ray, x);										
+	print_filler(game, ray, x);
 }
 
-t_img *render(t_game *game , t_img *img)
+t_img	*render(t_game *game, t_img *img)
 {
 	int		x;
 	t_ray	ray;
@@ -132,11 +128,11 @@ t_img *render(t_game *game , t_img *img)
 	ray.img = img;
 	while (++x < img->width)
 	{
-		ray.alpha = (-FOV/2.0 + (float)x * FOV / img->width) * PI / 180;
+		ray.alpha = (-FOV / 2.0 + (float)x * FOV / img->width) * PI / 180;
 		ray.x = game->player.x;
 		ray.y = game->player.y;
-		ray.delta_x =  cos(ray.alpha + game->player.rotation);
-		ray.delta_y =  sin(ray.alpha + game->player.rotation);
+		ray.delta_x = cos(ray.alpha + game->player.rotation);
+		ray.delta_y = sin(ray.alpha + game->player.rotation);
 		ray.next_x = ray.x + (ray.delta_x > 0);
 		ray.next_y = ray.y + (ray.delta_y > 0);
 		put_vertical_line(game, &ray, x);

@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:18:14 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/14 16:03:45 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/14 16:38:27 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ int		on_key_up(int key, t_game *game);
 int		on_key_down(int key, t_game *game);
 int		game_exit(t_game *game);
 int		dibuja(t_game *game);
-t_img	*render(t_game *game , t_img *img);
+t_img	*render(t_game *game, t_img *img);
 
 #endif

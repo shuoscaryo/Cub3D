@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 17:09:12 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/14 15:15:09 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/14 16:41:13 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ void	delete_n(char *line)
 
 void	init_var(t_map *map)
 {
-	map->NO = NULL;
-	map->SO = NULL;
-	map->WE = NULL;
-	map->EA = NULL;
+	map->no = NULL;
+	map->so = NULL;
+	map->we = NULL;
+	map->ea = NULL;
 	map->F[0] = -1;
 	map->F[1] = -1;
 	map->F[2] = -1;

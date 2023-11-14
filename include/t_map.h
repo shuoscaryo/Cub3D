@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 16:33:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/14 16:14:31 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/14 16:38:57 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ typedef struct s_map {
 	int		x;
 	int		y;
 	float	rotation;
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
 }	t_map;
 
 int		read_map(t_map *map, char *path);

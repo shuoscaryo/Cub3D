@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 19:24:20 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/13 17:33:40 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/14 16:38:37 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define T_PLAYER_H
 # include "t_keys.h"
 
-typedef struct s_game t_game;
+typedef struct s_game	t_game;
 typedef struct s_player
 {
 	float	x;

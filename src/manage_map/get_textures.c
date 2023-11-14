@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 16:30:39 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/05 17:12:35 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/14 16:40:20 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ int	get_no_so(char **aux, t_map *map)
 	if (ft_strcmp(aux[0], "NO") == 0)
 	{
 		if (aux[1] == NULL || open(aux[1], O_RDONLY) == -1
-			|| map->NO != NULL || aux[2] != NULL)
+			|| map->no != NULL || aux[2] != NULL)
 			return (printf("Error.\nTexture NO bad set.\n"), 0);
-		map->NO = ft_strdup(aux[1]);
+		map->no = ft_strdup(aux[1]);
 	}
 	else if (ft_strcmp(aux[0], "SO") == 0)
 	{
 		if (aux[1] == NULL || open(aux[1], O_RDONLY) == -1
-			|| map->SO != NULL || aux[2] != NULL)
+			|| map->so != NULL || aux[2] != NULL)
 			return (printf("Error.\nTexture SO bad set.\n"), 0);
-		map->SO = ft_strdup(aux[1]);
+		map->so = ft_strdup(aux[1]);
 	}
 	else
 		return (0);
@@ -38,16 +38,16 @@ int	get_we_ea(char **aux, t_map *map)
 	if (ft_strcmp(aux[0], "WE") == 0)
 	{
 		if (aux[1] == NULL || open(aux[1], O_RDONLY) == -1
-			|| map->WE != NULL || aux[2] != NULL)
+			|| map->we != NULL || aux[2] != NULL)
 			return (printf("Error.\nTexture WE bad set.\n"), 0);
-		map->WE = ft_strdup(aux[1]);
+		map->we = ft_strdup(aux[1]);
 	}
 	else if (ft_strcmp(aux[0], "EA") == 0)
 	{
 		if (aux[1] == NULL || open(aux[1], O_RDONLY) == -1
-			|| map->EA != NULL || aux[2] != NULL)
+			|| map->ea != NULL || aux[2] != NULL)
 			return (printf("Error.\nTexture EA bad set.\n"), 0);
-		map->EA = ft_strdup(aux[1]);
+		map->ea = ft_strdup(aux[1]);
 	}
 	else
 		return (0);

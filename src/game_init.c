@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 22:27:36 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/14 16:28:12 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/14 16:41:49 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 static int	textures_init(t_game *game)
 {
-	game->textures[0] = img_new(game->mlx, game->map.WE);
+	game->textures[0] = img_new(game->mlx, game->map.we);
 	if (!game->textures[0])
 		printf("Error: Couldn't load texture WE\n");
-	game->textures[1] = img_new(game->mlx, game->map.NO);
+	game->textures[1] = img_new(game->mlx, game->map.no);
 	if (!game->textures[1])
 		printf("Error: Couldn't load texture NO\n");
-	game->textures[2] = img_new(game->mlx, game->map.EA);
+	game->textures[2] = img_new(game->mlx, game->map.ea);
 	if (!game->textures[2])
 		printf("Error: Couldn't load texture EA\n");
-	game->textures[3] = img_new(game->mlx, game->map.SO);
+	game->textures[3] = img_new(game->mlx, game->map.so);
 	if (!game->textures[3])
 		printf("Error: Couldn't load texture SO\n");
 	if (!game->textures[0] || !game->textures[1]
@@ -84,6 +84,6 @@ int	game_init(t_game *game, char *file)
 	if (!textures_init(game))
 		return (game_free(game), 0);
 	player_init(&game->player, game->map.x + 0.5,
-			game->map.y + 0.5, game->map.rotation);
+		game->map.y + 0.5, game->map.rotation);
 	return (1);
 }

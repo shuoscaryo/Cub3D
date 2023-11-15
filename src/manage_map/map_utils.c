@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 17:09:12 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/14 16:41:13 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/15 18:50:19 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,6 @@ void	init_var(t_map *map)
 	map->so = NULL;
 	map->we = NULL;
 	map->ea = NULL;
-	map->F[0] = -1;
-	map->F[1] = -1;
-	map->F[2] = -1;
-	map->C[0] = -1;
-	map->C[1] = -1;
-	map->C[2] = -1;
+	map->floor = -1;
+	map->ceiling = -1;
 }

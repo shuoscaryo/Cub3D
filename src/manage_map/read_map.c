@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:43:43 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/14 16:44:44 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/15 18:52:07 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	all_data(t_map *map)
 {
 	if (map->no && map->so && map->we
-		&& map->ea && map->F[0] != -1 && map->C[0] != -1)
+		&& map->ea && map->floor != -1 && map->ceiling != -1)
 		return (1);
 	return (0);
 }

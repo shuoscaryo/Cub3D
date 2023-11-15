@@ -3,21 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 17:12:03 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/14 17:20:32 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/15 18:48:42 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "render.h"
 #include <math.h>
-
-static int	get_hex(int r, int g, int b)
-{
-	return (r << 16 | g << 8 | b);
-}
 
 static void	move_next_point(t_ray *ray, int *new_x, int *new_y)
 {
@@ -75,14 +70,14 @@ static void	print_pixels(t_game *game, int x, int y, t_ray *ray, int img_x)
 	{
 		float img_tan_beta = (ray->img->height/2 - i) / dist_screen;
 		if (img_tan_beta < -0.5 / dist_wall)
-			img_pixel_put(ray->img, img_x, i, get_hex(game->map.F[0], game->map.F[1],game->map.F[2]));
+			img_pixel_put(ray->img, img_x, i, game->map.floor);
 		else if (img_tan_beta < 0.5 / dist_wall)
 		{
 			pixel_y = (0.5- img_tan_beta * dist_wall) * game->textures[ray->face]->height;
 			img_pixel_put(ray->img, img_x, i, img_get_pixel(game->textures[ray->face], pixel_x, pixel_y));
 		}
 		else
-			img_pixel_put(ray->img, img_x, i, game->map.C[0] << 16 | game->map.C[1] << 8 | game->map.C[2]);
+			img_pixel_put(ray->img, img_x, i, game->map.ceiling);
 	}
 }
 
@@ -91,9 +86,9 @@ static void	print_filler(t_game *game, t_ray *ray, int x)
 	for (int i = 0; i < ray->img->height; i++)
 	{
 		if (i < ray->img->height / 2)
-			img_pixel_put(ray->img, x, i, game->map.C[0] << 16 | game->map.C[1] << 8 | game->map.C[2]);
+			img_pixel_put(ray->img, x, i, game->map.ceiling);
 		else
-			img_pixel_put(ray->img, x, i, game->map.F[0] << 16 | game->map.F[1] << 8 | game->map.F[2]);
+			img_pixel_put(ray->img, x, i, game->map.floor);
 	}	
 }
 

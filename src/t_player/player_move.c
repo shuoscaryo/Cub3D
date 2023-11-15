@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:44:16 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/14 17:11:23 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/15 21:54:37 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,33 @@ static void	adjust_rotation(float *rotation)
 		*rotation += 2 * PI;
 }
 
-void	player_move(t_player *this, t_game *game, float delta_time)
+static int	collision(char **map, float new_x, float new_y, float size)
 {
-	float	x;
-	float	y;
+	if (is_wall(map, new_x + size, new_y)
+		|| is_wall(map, new_x - size, new_y)
+		|| is_wall(map, new_x, new_y + size)
+		|| is_wall(map, new_x, new_y - size))
+		return (1);
+	return (0);
+}
+
+void	player_move(t_player *p, t_game *game, float delta_time)
+{
 	float	vx;
 	float	vy;
+	float	new_x;
+	float	new_y;
 
-	vx = this->v_front * cos(this->rotation)
-		- this->v_side * sin(this->rotation);
-	vy = this->v_front * sin(this->rotation)
-		+ this->v_side * cos(this->rotation);
-	x = this->x + vx * delta_time;
-	y = this->y + vy * delta_time;
-	this->rotation += this->v_rotation * delta_time;
-	adjust_rotation(&this->rotation);
-	if (is_wall(game->map.map, x + this->size * ((vx > 0) - (vx < 0)), y))
-		this->x = (int)(x) + (vx > 0) + this->size * ((vx < 0) - (vx > 0));
-	else
-		this->x = x;
-	if (is_wall(game->map.map, x, y + this->size * ((vy > 0) - (vy < 0))))
-		this->y = (int)(y) + (vy > 0) + this->size * ((vy < 0) - (vy > 0));
-	else
-		this->y = y;
-	//NOTE player corner collisions
+	vx = p->v_front * cos(p->rotation)
+		- p->v_side * sin(p->rotation);
+	vy = p->v_front * sin(p->rotation)
+		+ p->v_side * cos(p->rotation);
+	new_x = p->x + vx * delta_time;
+	new_y = p->y + vy * delta_time;
+	p->rotation += p->v_rotation * delta_time;
+	adjust_rotation(&p->rotation);
+	if (collision(game->map.map, new_x, new_y, p->size))
+		return ;
+	p->x = new_x;
+	p->y = new_y;
 }

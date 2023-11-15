@@ -3,16 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 17:12:03 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/15 18:48:42 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/15 19:43:37 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "render.h"
 #include <math.h>
+
+typedef struct s_vector
+{
+	float	x;
+	float	y;
+}	t_vector;
+
+/* float	dist(t_vector a, t_vector b)
+{
+	return (sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y)));
+} */
+
+float	dist(float x1, float y1, float x2, float y2)
+{
+	return (sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)));
+}
 
 static void	move_next_point(t_ray *ray, int *new_x, int *new_y)
 {
@@ -65,7 +81,7 @@ static void	print_pixels(t_game *game, int x, int y, t_ray *ray, int img_x)
 	pixel_x = (int)(percentage * game->textures[ray->face]->width);
 	float dist_screen = ray->img->height / (2.0f * tan(FOV * PI * ray->img->height/ (360.0f * ray->img->width)));
 	float dist_wall;
-	dist_wall = sqrt((game->player.x - ray->x) * (game->player.x - ray->x) + (game->player.y - ray->y) * (game->player.y - ray->y)) * fabs(cos(ray->alpha));
+	dist_wall = dist(game->player.x, game->player.y, ray->x, ray->y) * cos(ray->alpha);
 	for ( int i = 0; i < ray->img->height; i++)
 	{
 		float img_tan_beta = (ray->img->height/2 - i) / dist_screen;
@@ -83,7 +99,10 @@ static void	print_pixels(t_game *game, int x, int y, t_ray *ray, int img_x)
 
 static void	print_filler(t_game *game, t_ray *ray, int x)
 {
-	for (int i = 0; i < ray->img->height; i++)
+	int	i;
+
+	i = -1;
+	while (++i < ray->img->height)
 	{
 		if (i < ray->img->height / 2)
 			img_pixel_put(ray->img, x, i, game->map.ceiling);

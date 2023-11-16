@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 16:30:39 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/16 17:33:55 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/16 20:33:21 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int	get_no_so(char **aux, t_map *map)
 	{
 		if (aux[1] == NULL || open(aux[1], O_RDONLY) == -1
 			|| map->no != NULL || aux[2] != NULL)
-			return (printf("Error.\nTexture NO bad set.\n"), 0);
+			return (printf("Error.\nTexture NO bad set.\n"), -1);
 		map->no = ft_strdup(aux[1]);
 	}
 	else if (ft_strcmp(aux[0], "SO") == 0)
 	{
 		if (aux[1] == NULL || open(aux[1], O_RDONLY) == -1
 			|| map->so != NULL || aux[2] != NULL)
-			return (printf("Error.\nTexture SO bad set.\n"), 0);
+			return (printf("Error.\nTexture SO bad set.\n"), -1);
 		map->so = ft_strdup(aux[1]);
 	}
 	else
@@ -39,14 +39,14 @@ int	get_we_ea(char **aux, t_map *map)
 	{
 		if (aux[1] == NULL || open(aux[1], O_RDONLY) == -1
 			|| map->we != NULL || aux[2] != NULL)
-			return (printf("Error.\nTexture WE bad set.\n"), 0);
+			return (printf("Error.\nTexture WE bad set.\n"), -1);
 		map->we = ft_strdup(aux[1]);
 	}
 	else if (ft_strcmp(aux[0], "EA") == 0)
 	{
 		if (aux[1] == NULL || open(aux[1], O_RDONLY) == -1
 			|| map->ea != NULL || aux[2] != NULL)
-			return (printf("Error.\nTexture EA bad set.\n"), 0);
+			return (printf("Error.\nTexture EA bad set.\n"), -1);
 		map->ea = ft_strdup(aux[1]);
 	}
 	else
@@ -66,12 +66,12 @@ int	get_f(char **aux, t_map *map)
 		if (!colors || !colors[0] || !colors[1] || !colors[2])
 		{
 			ft_array_free(colors);
-			return (printf("Error.\nColor F doesn't exist.\n"), 0);
+			return (printf("Error.\nColor F doesn't exist.\n"), -1);
 		}
 		if (!are_nbr(colors))
 		{
 			ft_array_free(colors);
-			return (printf("Error.\nColor F doesn't exist.\n"), 0);
+			return (printf("Error.\nColor F doesn't exist.\n"), -1);
 		}
 		map->floor = get_intcolor(colors);
 		if (map->floor == -1)
@@ -95,12 +95,12 @@ int	get_c(char **aux, t_map *map)
 		if (!colors || !colors[0] || !colors[1] || !colors[2])
 		{
 			ft_array_free(colors);
-			return (printf("Error.\nColor C doesn't exist.\n"), 0);
+			return (printf("Error.\nColor C doesn't exist.\n"), -1);
 		}
 		if (!are_nbr(colors))
 		{
 			ft_array_free(colors);
-			return (printf("Error.\nColor C doesn't exist.\n"), 0);
+			return (printf("Error.\nColor C doesn't exist.\n"), -1);
 		}
 		map->ceiling = get_intcolor(colors);
 		if (map->ceiling == -1)
@@ -114,9 +114,17 @@ int	get_c(char **aux, t_map *map)
 
 int	get_textures(char **aux, t_map *map)
 {
-	if (!get_no_so(aux, map) && !get_we_ea(aux, map)
-		&& !get_f(aux, map) && !get_c(aux, map))
-		return (printf("Error.\nMap is invalid.\n"), 0);
-	else
+	int	result[4];
+
+	result[0] = get_no_so(aux, map);
+	result[1] = get_we_ea(aux, map);
+	result[2] = get_f(aux, map);
+	result[3] = get_c(aux, map);
+	if (result[0] == -1 || result[1] == -1
+		|| result[2] == -1 || result[3] == -1)
+		return (0);
+	if (result[0] == 1 || result[1] == 1
+		|| result[2] == 1 || result[3] == 1)
 		return (1);
+	return (printf("Error.\nInvalid map.\n"), 0);
 }

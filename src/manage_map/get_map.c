@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 18:29:49 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/13 17:04:38 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/16 20:10:02 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	after_map(t_map *map, char **buff, t_list **list)
 		}
 		else
 		{
-			printf("Error.\nMap is invalid aa a.\n");
+			printf("Error.\nMap is invalid.\n");
 			free(*buff);
 			return (ft_lstfree(*list, free), 0);
 		}

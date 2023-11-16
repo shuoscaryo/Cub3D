@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 16:30:39 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/16 20:33:21 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/16 20:35:55 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	get_f(char **aux, t_map *map)
 		}
 		map->floor = get_intcolor(colors);
 		if (map->floor == -1)
-			return (ft_array_free(colors), 0);
+			return (ft_array_free(colors), -1);
 		ft_array_free(colors);
 	}
 	else
@@ -104,7 +104,7 @@ int	get_c(char **aux, t_map *map)
 		}
 		map->ceiling = get_intcolor(colors);
 		if (map->ceiling == -1)
-			return (ft_array_free(colors), 0);
+			return (ft_array_free(colors), -1);
 		ft_array_free(colors);
 	}
 	else

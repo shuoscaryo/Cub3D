@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 18:39:34 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/14 16:44:33 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/16 17:30:46 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ void	set_player(t_map *map)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (map->map[i])
+	i = -1;
+	while (map->map[++i])
 	{
-		j = 0;
-		while (map->map[i][j])
+		j = -1;
+		while (map->map[i][++j])
 		{
 			if (ft_strchr("NSEW", map->map[i][j]))
 			{
@@ -99,8 +99,6 @@ void	set_player(t_map *map)
 					map->rotation = PI;
 				map->map[i][j] = '0';
 			}
-			j++;
 		}
-		i++;
 	}
 }

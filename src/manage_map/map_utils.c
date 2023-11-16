@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 17:09:12 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/15 18:50:19 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:34:11 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,20 @@ void	init_var(t_map *map)
 	map->ea = NULL;
 	map->floor = -1;
 	map->ceiling = -1;
+}
+
+int	get_intcolor(char **colors)
+{
+	int	r;
+	int	g;
+	int	b;
+	int	color;
+
+	r = ft_atoi(colors[0]);
+	g = ft_atoi(colors[1]);
+	b = ft_atoi(colors[2]);
+	if (r > 255 || r < 0 || g > 255 || g < 0 || b > 255 || b < 0)
+		return (printf("Error.\nColor doesn't exist.\n"), -1);
+	color = (r << 16 | g << 8 | b);
+	return (color);
 }

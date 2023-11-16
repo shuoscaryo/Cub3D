@@ -3,31 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 17:12:03 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/15 19:43:37 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/16 18:13:42 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "render.h"
-#include <math.h>
-
-typedef struct s_vector
-{
-	float	x;
-	float	y;
-}	t_vector;
 
 /* float	dist(t_vector a, t_vector b)
 {
 	return (sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y)));
 } */
 
-float	dist(float x1, float y1, float x2, float y2)
+/*
+		1
+	 ___________
+	|			|
+0	|			|  2
+	|			|
+	|___________|
+
+		3
+*/
+
+static void	print_pixels(t_game *game, t_ray *ray, int img_x)
 {
-	return (sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)));
+	ray->pixel_x = (int)(get_percentage(ray->new_xy[0],
+				ray->new_xy[1], ray) * game->textures[ray->face]->width);
+	ray->dist_screen = ray->img->height / (2.0f
+			* tan(FOV * PI * ray->img->height / (360.0f * ray->img->width)));
+	ray->dist_wall = dist(game->player.x,
+			game->player.y, ray->x, ray->y) * cos(ray->alpha);
+	print_pixaux(game, ray, img_x);
 }
 
 static void	move_next_point(t_ray *ray, int *new_x, int *new_y)
@@ -54,49 +63,6 @@ static void	move_next_point(t_ray *ray, int *new_x, int *new_y)
 	ray->y += ray->delta_y * tx;
 }
 
-/*
-		1
-	 ___________
-	|			|
-0	|			|  2
-	|			|
-	|___________|
-
-		3
-*/
-static void	print_pixels(t_game *game, int x, int y, t_ray *ray, int img_x)
-{
-	float	percentage;
-	int		pixel_x;
-	int		pixel_y;
-
-	if (ray->face == 0)
-		percentage = ray->y - (float)y;
-	else if (ray->face == 2)
-		percentage = 1 - (ray->y - (float)y);
-	else if (ray->face == 1)
-		percentage = 1 - (ray->x - (float)x);
-	else
-		percentage = ray->x - (float)x;
-	pixel_x = (int)(percentage * game->textures[ray->face]->width);
-	float dist_screen = ray->img->height / (2.0f * tan(FOV * PI * ray->img->height/ (360.0f * ray->img->width)));
-	float dist_wall;
-	dist_wall = dist(game->player.x, game->player.y, ray->x, ray->y) * cos(ray->alpha);
-	for ( int i = 0; i < ray->img->height; i++)
-	{
-		float img_tan_beta = (ray->img->height/2 - i) / dist_screen;
-		if (img_tan_beta < -0.5 / dist_wall)
-			img_pixel_put(ray->img, img_x, i, game->map.floor);
-		else if (img_tan_beta < 0.5 / dist_wall)
-		{
-			pixel_y = (0.5- img_tan_beta * dist_wall) * game->textures[ray->face]->height;
-			img_pixel_put(ray->img, img_x, i, img_get_pixel(game->textures[ray->face], pixel_x, pixel_y));
-		}
-		else
-			img_pixel_put(ray->img, img_x, i, game->map.ceiling);
-	}
-}
-
 static void	print_filler(t_game *game, t_ray *ray, int x)
 {
 	int	i;
@@ -113,22 +79,20 @@ static void	print_filler(t_game *game, t_ray *ray, int x)
 
 static void	put_vertical_line(t_game *game, t_ray *ray, int x)
 {
-	int		new_x;
-	int		new_y;
 	float	dx;
 	float	dy;
 
-	new_x = ray->x;
-	new_y = ray->y;
+	ray->new_xy[0] = ray->x;
+	ray->new_xy[1] = ray->y;
 	while (1)
 	{
-		move_next_point(ray, &new_x, &new_y);
+		move_next_point(ray, &(ray->new_xy[0]), &(ray->new_xy[1]));
 		dx = game->player.x - ray->x;
 		dy = game->player.y - ray->y;
 		if (sqrt(dx * dx + dy * dy) > RENDER_DISTANCE)
 			break ;
-		if (is_wall(game->map.map, new_x, new_y))
-			return (print_pixels(game, new_x, new_y, ray, x));
+		if (is_wall(game->map.map, ray->new_xy[0], ray->new_xy[1]))
+			return (print_pixels(game, ray, x));
 	}
 	print_filler(game, ray, x);
 }

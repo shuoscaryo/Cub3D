@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 22:24:00 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/14 16:28:15 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/21 11:30:29 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ void	img_free(t_img *img, void *mlx)
 		mlx_destroy_image(mlx, img->img);
 	if (img->filename)
 		free(img->filename);
+	free(img);
 }

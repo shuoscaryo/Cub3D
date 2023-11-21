@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:14:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/15 20:37:43 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/21 11:51:52 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (printf("Error: Invalid number of arguments.\n"), 1);
-	if (!game_init(&game, argv[1]))
-		return (1);
+	game_init(&game, argv[1]);
 	mlx_hook(game.win, ON_DESTROY, NO_EVENT_MASK, game_exit, &game);
 	mlx_loop_hook(game.mlx, update, &game);
 	mlx_hook(game.win, ON_KEYDOWN, KEY_PRESS_MASK, on_key_down, &game);

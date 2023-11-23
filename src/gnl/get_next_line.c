@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 20:04:34 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/05 20:45:21 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/23 09:52:34 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char	ft_cut_line(char **buf, char **out_str)
 
 	i = 0;
 	while ((*buf)[i] != '\n' && (*buf)[i] != '\0')
-	i++;
+		i++;
 	*out_str = malloc(i + 1 + ((*buf)[i] == '\n'));
 	if (!*out_str)
 		return (0);

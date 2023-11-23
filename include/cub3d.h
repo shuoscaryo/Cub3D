@@ -6,13 +6,13 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 12:18:14 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/14 17:15:13 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/21 11:47:06 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# include <mlx.h>
+# include "mlx.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -39,7 +39,7 @@ typedef struct s_game {
 	t_player	player;
 }	t_game;
 
-int		game_init(t_game *game, char *file);
+void	game_init(t_game *game, char *file);
 int		on_key_up(int key, t_game *game);
 int		on_key_down(int key, t_game *game);
 int		game_exit(t_game *game);

@@ -1,10 +1,10 @@
 NO ./textures/wall.xpm
-SO ./textures/wall.xpm
-WE ./textures/wall.xpm
-EA ./textures/wall.xpm
+SO ./textures/bricks.xpm
+WE ./textures/wood.xpm
+EA ./textures/grass.xpm
 
 F 0,100,0
-C 100,100,200
+C 150,150,255
 
 
      1111111111111111111111111111

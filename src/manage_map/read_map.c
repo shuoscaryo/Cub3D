@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:43:43 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/15 18:52:07 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:37:03 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ int	read_map(t_map *map, char *path)
 {
 	ft_bzero(map, sizeof(t_map));
 	if (ft_strncmp(path + ft_strlen(path) - 4, ".cub", 4) != 0)
-		return (printf("Error: Invalid map name.\n"), 0);
+		return (printf("Error.\nInvalid map name.\n"), 0);
 	map->fd = open(path, O_RDONLY);
 	if (map->fd == -1)
-		return (printf("Error: Couldn't open map.\n"), 0);
+		return (printf("Error.\nCouldn't open map.\n"), 0);
 	init_var(map);
 	if (!get_data(map))
 		return (0);

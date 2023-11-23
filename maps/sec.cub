@@ -1,7 +1,7 @@
-NO ./textures/north.xpm
-SO ./textures/yellow.xpm
-WE ./textures/blue.xpm
-EA ./textures/pink.xpm
+NO ./textures/bricks.xpm
+SO ./textures/grass.xpm
+WE ./textures/wall.xpm
+EA ./textures/wood.xpm
 
 F 30,150,30
 C 150,150,255

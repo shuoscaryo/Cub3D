@@ -1,0 +1,12 @@
+NO ./textures/wall.xpm
+SO ./textures/bricks.xpm
+WE ./textures/wood.xpm
+EA ./textures/grass.xpm
+
+F 0,100,0
+C 150,150,255
+
+
+111
+1N1
+101

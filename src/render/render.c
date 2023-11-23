@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 17:12:03 by orudek            #+#    #+#             */
-/*   Updated: 2023/11/21 12:28:12 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/23 09:52:23 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	print_filler(t_game *game, t_ray *ray, int x)
 			img_pixel_put(ray->img, x, i, game->map.ceiling);
 		else
 			img_pixel_put(ray->img, x, i, game->map.floor);
-	}	
+	}
 }
 
 static void	put_vertical_line(t_game *game, t_ray *ray, int x)

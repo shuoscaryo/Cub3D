@@ -6,7 +6,7 @@
 /*   By: orudek <orudek@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 16:30:39 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/16 20:35:55 by orudek           ###   ########.fr       */
+/*   Updated: 2023/11/23 15:37:01 by orudek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ int	get_f(char **aux, t_map *map)
 	if (ft_strcmp(aux[0], "F") == 0)
 	{
 		if (aux[1] == NULL || map->floor != -1 || aux[2] != NULL)
-			return (printf("Error.\nColor F bad set.\n"), 0);
+			return (printf("Error.\nColor F bad set.\n"), -1);
 		colors = ft_split(aux[1], ',');
 		if (!colors || !colors[0] || !colors[1] || !colors[2])
 		{
 			ft_array_free(colors);
 			return (printf("Error.\nColor F doesn't exist.\n"), -1);
 		}
-		if (!are_nbr(colors))
+		if (!are_nbr(colors) || !correct_commas(aux[1]) || !n_col(colors))
 		{
 			ft_array_free(colors);
 			return (printf("Error.\nColor F doesn't exist.\n"), -1);
@@ -90,14 +90,14 @@ int	get_c(char **aux, t_map *map)
 	if (ft_strcmp(aux[0], "C") == 0)
 	{
 		if (aux[1] == NULL || map->ceiling != -1 || aux[2] != NULL)
-			return (printf("Error.\nColor C bad set.\n"), 0);
+			return (printf("Error.\nColor C bad set.\n"), -1);
 		colors = ft_split(aux[1], ',');
 		if (!colors || !colors[0] || !colors[1] || !colors[2])
 		{
 			ft_array_free(colors);
 			return (printf("Error.\nColor C doesn't exist.\n"), -1);
 		}
-		if (!are_nbr(colors))
+		if (!are_nbr(colors) || !correct_commas(aux[1]) || !n_col(colors))
 		{
 			ft_array_free(colors);
 			return (printf("Error.\nColor C doesn't exist.\n"), -1);

@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 16:30:39 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/16 17:33:55 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:28:16 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	get_f(char **aux, t_map *map)
 			ft_array_free(colors);
 			return (printf("Error.\nColor F doesn't exist.\n"), 0);
 		}
-		if (!are_nbr(colors))
+		if (!are_nbr(colors) || !correct_commas(aux[1]) || !n_col(colors))
 		{
 			ft_array_free(colors);
 			return (printf("Error.\nColor F doesn't exist.\n"), 0);

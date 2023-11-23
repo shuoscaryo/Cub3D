@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 16:33:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/11/16 17:34:28 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:28:28 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ void	init_var(t_map *map);
 void	set_player(t_map *map);
 int		is_wall(char **map, int x, int y);
 int		get_intcolor(char **colors);
+int		correct_commas(char *str);
+int		n_col(char **str);
 
 #endif

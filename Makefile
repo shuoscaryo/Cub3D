@@ -42,6 +42,7 @@ SRC := game_exit.c\
 	gnl/get_next_line_utils.c\
 	main.c\
 	manage_map/check_map.c\
+	manage_map/color_utils.c\
 	manage_map/get_map.c\
 	manage_map/get_textures.c\
 	manage_map/is_wall.c\
